@@ -8,6 +8,9 @@ public final class SpeRulesPlugin extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
 
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+
     }
 
     @Override
