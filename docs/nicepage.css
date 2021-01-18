@@ -31029,14 +31029,14 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-table-alt-custom-color-3 tr:nth-child(even)
         {
             color: #ffffff;
-            background-color: rgba(0,77,150,0.67);
+            background-color: #7e9ca9;
         }
 
         .u-button-style.u-custom-color-3,
         .u-button-style.u-custom-color-3[class*="u-border-"]
         {
             color: #ffffff !important;
-            background-color: rgba(0,77,150,0.67) !important;
+            background-color: #7e9ca9 !important;
         }
 
         .u-button-style.u-custom-color-3:hover,
@@ -31049,7 +31049,7 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-button-style.u-button-style.u-custom-color-3[class*="u-border-"].active
         {
             color: #ffffff !important;
-            background-color: rgba(0,69,135,0.67) !important;
+            background-color: #6c8e9d !important;
         }
 
         .u-hover-custom-color-3:hover,
@@ -31068,11 +31068,11 @@ a.u-link.u-text-hover-grey-90:hover {
         a.u-button-style.u-button-style.u-active-custom-color-3[class*="u-border-"].active
         {
             color: #ffffff !important;
-            background-color: rgba(0,77,150,0.67) !important;
+            background-color: #7e9ca9 !important;
         }
 
         a.u-link.u-hover-custom-color-3:hover {
-            color: rgba(0,77,150,0.67) !important;
+            color: #7e9ca9 !important;
         }
 
         
@@ -31171,22 +31171,22 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-border-custom-color-3,
         .u-separator-custom-color-3:after
         {
-            border-color: rgba(0,77,150,0.67);
-            stroke: rgba(0,77,150,0.67);
+            border-color: #7e9ca9;
+            stroke: #7e9ca9;
         }
 
         .u-button-style.u-border-custom-color-3
         {
-            border-color: rgba(0,77,150,0.67) !important;
-            color: rgba(0,77,150,0.67) !important;
+            border-color: #7e9ca9 !important;
+            color: #7e9ca9 !important;
             background-color: transparent !important;
         }
 
         .u-button-style.u-border-custom-color-3:hover,
         .u-button-style.u-border-custom-color-3:focus
         {
-            border-color: rgba(0,69,135,0.67) !important;
-            color: rgba(0,69,135,0.67) !important;
+            border-color: #6c8e9d !important;
+            color: #6c8e9d !important;
             background-color: transparent !important;
         }
 
@@ -31198,18 +31198,18 @@ a.u-link.u-text-hover-grey-90:hover {
         a.u-button-style.u-button-style.u-border-active-custom-color-3:active,
         a.u-button-style.u-button-style.u-border-active-custom-color-3.active
         {
-            color: rgba(0,77,150,0.67) !important;
-            border-color: rgba(0,77,150,0.67) !important;
+            color: #7e9ca9 !important;
+            border-color: #7e9ca9 !important;
         }
 
         .u-link.u-border-custom-color-3[class*="u-border-"]
         {
-            border-color: rgba(0,77,150,0.67) !important;
+            border-color: #7e9ca9 !important;
         }
 
         .u-link.u-border-custom-color-3[class*="u-border-"]:hover
         {
-            border-color: rgba(0,69,135,0.67) !important;
+            border-color: #6c8e9d !important;
         }
         
 
@@ -31324,7 +31324,7 @@ a.u-link.u-text-hover-grey-90:hover {
         a.u-button-style.u-text-custom-color-3,
         a.u-button-style.u-text-custom-color-3[class*="u-border-"]
         {
-            color: rgba(0,77,150,0.67) !important;
+            color: #7e9ca9 !important;
         }
 
         a.u-button-style.u-text-custom-color-3:hover,
@@ -31336,7 +31336,7 @@ a.u-link.u-text-hover-grey-90:hover {
         a.u-button-style.u-button-style.u-text-custom-color-3.active,
         a.u-button-style.u-button-style.u-text-custom-color-3[class*="u-border-"].active
         {
-            color: rgba(0,69,135,0.67) !important;
+            color: #6c8e9d !important;
         }
 
         a.u-button-style.u-button-style.u-text-hover-custom-color-3:hover,
@@ -31352,24 +31352,24 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-popupmenu-items.u-text-hover-custom-color-3 .u-nav-link:hover,
         .u-popupmenu-items.u-popupmenu-items.u-text-active-custom-color-3 .u-nav-link.active
         {
-            color: rgba(0,77,150,0.67) !important;
+            color: #7e9ca9 !important;
         }
 
         .u-text-custom-color-3 svg,
         .u-text-hover-custom-color-3:hover svg,
         .u-text-hover-custom-color-3:focus svg
         {
-            fill: rgba(0,77,150,0.67);
+            fill: #7e9ca9;
         }
 
         .u-link.u-text-custom-color-3:hover
         {
-            color: rgba(0,69,135,0.67) !important;
+            color: #6c8e9d !important;
         }
 
         a.u-link.u-text-hover-custom-color-3:hover
         {
-            color: rgba(0,77,150,0.67) !important;
+            color: #7e9ca9 !important;
         }
 
         
@@ -31653,11 +31653,11 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-sheet-1 {
-  min-height: 82px;
+  min-height: 92px;
 }
 
 .u-header .u-image-1 {
-  margin: 22px auto 0 0;
+  margin: 14px auto 0 0;
 }
 
 .u-header .u-logo-image-1 {
@@ -31666,7 +31666,7 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-menu-1 {
-  margin: -32px 22px 22px auto;
+  margin: -51px 0 0 auto;
 }
 
 .u-header .u-nav-1 {
@@ -31677,7 +31677,14 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-nav-2 {
-  font-size: 1.25rem;
+  font-size: 1rem;
+  letter-spacing: 0px;
+}
+
+.u-header .u-text-1 {
+  font-weight: 700;
+  font-size: 3rem;
+  margin: -45px auto 20px 78px;
 }
 @media (max-width: 1199px) {
   .u-header .u-image-1 {
@@ -31687,16 +31694,31 @@ a.u-link.u-text-hover-grey-90:hover {
 
   .u-header .u-menu-1 {
     width: auto;
-    margin-right: 0;
+  }
+
+  .u-header .u-text-1 {
+    margin-left: 64px;
   }
 }
-
+@media (max-width: 991px) {
+  .u-header .u-text-1 {
+    margin-left: 49px;
+  }
+}
 @media (max-width: 767px) {
   .u-header .u-image-1 {
     width: auto;
   }
-}
 
+  .u-header .u-text-1 {
+    margin-left: 37px;
+  }
+}
+@media (max-width: 575px) {
+  .u-header .u-text-1 {
+    margin-left: 23px;
+  }
+}
 .u-footer {
   background-image: none;
 }
