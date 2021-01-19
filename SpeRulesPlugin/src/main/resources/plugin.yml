@@ -4,3 +4,8 @@ main: me.kokored.speserver.sperulesplugin.SpeRulesPlugin
 api-version: 1.16
 authors: [ Koko_red7214 ]
 description: 無語伺服器-條約及規則插件
+
+commands:
+
+  rules:
+    aliases: [ rule ]

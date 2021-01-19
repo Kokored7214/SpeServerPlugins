@@ -16,6 +16,3 @@ RulesGUI:
 
   #當玩家點擊選單中的物品時 會向該玩家播放的音效
   ItemClickSound: ""
-
-  #選單中 規章 類別的物品ID
-  RuleItem: "BOOK"
