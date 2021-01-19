@@ -8,11 +8,3 @@ SQL:
   database: ''
   username: ''
   password: ''
-
-RulesGUI:
-
-  #規章顯示GUI的標題 (顯示在GUI的左上方)(使用 '&' 作為顔色代碼)
-  GUITitle: "&9&l無語伺服器 &6&l玩家須知&b及&6&l條約"
-
-  #當玩家點擊選單中的物品時 會向該玩家播放的音效
-  ItemClickSound: ""

@@ -2,12 +2,15 @@ package me.kokored.speserver.sperulesplugin.rulesManager.rulesItem;
 
 import java.util.ArrayList;
 import me.kokored.speserver.sperulesplugin.SpeRulesPlugin;
+import me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.PlayRules.GUIBuilder;
 import me.kokored.speserver.sperulesplugin.rulesManager.rulesUtil;
 import me.kokored.speserver.sperulesplugin.sql.MySqlAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,6 +19,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitTask;
 
 public class PlayRules implements Listener {
 
@@ -30,19 +34,74 @@ public class PlayRules implements Listener {
 
         Player player = (Player) event.getWhoClicked();
 
-        if (event.getView().getTitle().equals(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("RulesGUI.GUITitle")))) {
+        if (event.getView().getTitle().equals(ChatColor.translateAlternateColorCodes('&', "&9&l無語伺服器 &6A章 &f- &6游玩須知"))) {
 
 
-            if (event.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', "&6A章 &f- &6游玩須知"))) {
+            if (event.getCurrentItem().getItemMeta().getDisplayName().equals(colorText("&6A章 第六條"))
+                    && event.getCurrentItem().getType().equals(Material.BOOK)
+                    && event.getClick().isRightClick()) {
                 player.closeInventory();
-                player.sendMessage(colorText("&aplay rules confirmed \n" + rulesUtil.getDate()));
-                MySqlAPI.setLinkData(player.getUniqueId().toString(), player.getName(), rulesUtil.getDate(), true);
+
+                player.openInventory(GUIBuilder.getPlayRulesConfirmGUI(player));
             }
-            /*
-            if (event.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', "&c&l拒絕 &6同意條款"))) {
+
+            event.setCancelled(true);
+
+        }
+        if (event.getView().getTitle().equals(ChatColor.translateAlternateColorCodes('&', "&b最終確認"))) {
+
+
+            if (event.getCurrentItem().getItemMeta().getDisplayName().equals(colorText("&a確認"))
+                    && event.getCurrentItem().getType().equals(Material.LIME_STAINED_GLASS_PANE)) {
+
+                String name = player.getName();
+                String uuid = player.getUniqueId().toString();
+
+                if (MySqlAPI.playRulesConfirmed(uuid) == false) {
+                    plugin.getLogger().info(colorText("[MySQL] Player " + name + " Agreed Rules A - PlayRules"));
+                    plugin.getLogger().info(colorText("[MySQL] Saving player " + name + "'s data..."));
+                    MySqlAPI.setLinkData(uuid, name, rulesUtil.getDate(), true);
+                    plugin.getLogger().info(colorText("[MySQL] Player " + name + "'s data is now saved."));
+                }
+
+                player.closeInventory();
+
+                player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+
+                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                    @Override
+                    public void run() {
+                        player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+                    }
+                }, 5);
+                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                    @Override
+                    public void run() {
+                        player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+                    }
+                }, 10);
+                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                    @Override
+                    public void run() {
+                        player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+                    }
+                }, 15);
+
+                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10f, 1f);
+                player.sendMessage(colorText("&d恭喜你同意了 &6A章 &f- &6游玩須知"));
+                player.sendMessage(colorText("&b你可以使用指令 &b/rules &b再次打開 &6A章 &b來查看規章"));
 
             }
-            */
+            if (event.getCurrentItem().getItemMeta().getDisplayName().equals(colorText("&c取消"))
+                    && event.getCurrentItem().getType().equals(Material.RED_STAINED_GLASS_PANE)) {
+                player.closeInventory();
+            }
+
+            event.setCancelled(true);
+
+        }
+
+        if (event.getView().getTitle().equals(ChatColor.translateAlternateColorCodes('&', "&6A章 &f- &6游玩須知"))) {
 
             event.setCancelled(true);
 
@@ -64,6 +123,38 @@ public class PlayRules implements Listener {
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
+    public static ItemStack NeedToKnown() {
+        ItemStack itemStack = new ItemStack(Material.PAPER, 1);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<String> itemLore = new ArrayList<>();
+        itemMeta.setDisplayName(colorText("&e提醒"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemLore.add("");
+        itemLore.add(colorText("&f【&b請珍惜每個領地，好好善用&f】"));
+        itemLore.add("");
+        itemLore.add(colorText("&f【&b請玩家保持良好的遊玩態度、維護遊戲環境是大家的責任。"));
+        itemLore.add(colorText("&b請不要以身試法、當一個優質的玩家、"));
+        itemLore.add(colorText("&b不想被別人偷、拆、那麼自己也不要做&f】"));
+        itemMeta.setLore(itemLore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+    public static ItemStack Agree() {
+        ItemStack itemStack = new ItemStack(Material.PAPER, 1);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<String> itemLore = new ArrayList<>();
+        itemMeta.setDisplayName(colorText("&a同意規章"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemLore.add("");
+        itemLore.add(colorText("&d如你同意本規章, 請&6右鍵點擊&d規章 &dA6 &d來&a同意"));
+        itemLore.add(colorText("&b點擊後將會&a同意 &9&l無語伺服器 &f- &6規則A章"));
+        itemMeta.setLore(itemLore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
     public static ItemStack A1() {
         ItemStack itemStack = new ItemStack(Material.BOOK, 1);
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -170,6 +261,104 @@ public class PlayRules implements Listener {
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
+    public static ItemStack A8() {
+        ItemStack itemStack = new ItemStack(Material.BOOK, 8);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<String> itemLore = new ArrayList<>();
+        itemMeta.setDisplayName(colorText("&6A章 第八條"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemLore.add("");
+        itemLore.add(colorText("&f請勿&c惡意騷擾&f其他玩家(如岩漿浴、方塊掩埋、陷阱等)"));
+        itemLore.add(colorText("&f如不認識或未獲得對方同意，&c請勿這樣做"));
+        itemMeta.setLore(itemLore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+    public static ItemStack A9() {
+        ItemStack itemStack = new ItemStack(Material.BOOK, 9);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<String> itemLore = new ArrayList<>();
+        itemMeta.setDisplayName(colorText("&6A章 第九條"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemLore.add("");
+        itemLore.add(colorText("&f禁止&c&l惡意&f使用紅石對伺服器造成卡頓的現象。"));
+        itemLore.add(colorText("&f例如：紅石連閃器"));
+        itemMeta.setLore(itemLore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+    public static ItemStack A10() {
+        ItemStack itemStack = new ItemStack(Material.BOOK, 10);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<String> itemLore = new ArrayList<>();
+        itemMeta.setDisplayName(colorText("&6A章 第十條"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemLore.add("");
+        itemLore.add(colorText("&f禁止偷竊他人容器的物品或者將他人容器鎖起佔為己有"));
+        itemLore.add(colorText("&d(未鎖容器被偷或者具有公用性質都不會還原)"));
+        itemMeta.setLore(itemLore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+    public static ItemStack A11() {
+        ItemStack itemStack = new ItemStack(Material.BOOK, 11);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<String> itemLore = new ArrayList<>();
+        itemMeta.setDisplayName(colorText("&6A章 第十一條"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemLore.add("");
+        itemLore.add(colorText("&f玩家請善用領地"));
+        itemLore.add(colorText("&b- (使用木鋤選擇兩個對角後使用/res create <領地名>)"));
+        itemLore.add(colorText("&f鎖箱子"));
+        itemLore.add(colorText("&b- (使用告示牌對需上鎖之&d&l容器&b點擊右鍵)"));
+        itemLore.add(colorText("&f這些是唯一的保護途徑"));
+        itemMeta.setLore(itemLore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
+    public static ItemStack ConfirmInfo() {
+        ItemStack itemStack = new ItemStack(Material.PAPER, 1);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<String> itemLore = new ArrayList<>();
+        itemMeta.setDisplayName(colorText("&6關於本頁"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemLore.add("");
+        itemLore.add(colorText("&b這是最終確認, 確認后將&c無法更改"));
+        itemLore.add(colorText("&b規章會&c&l隨時更新&b請自行前往Discord確認最新規章."));
+        itemMeta.setLore(itemLore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+    public static ItemStack ConfirmAgree() {
+        ItemStack itemStack = new ItemStack(Material.LIME_STAINED_GLASS_PANE, 1);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<String> itemLore = new ArrayList<>();
+        itemMeta.setDisplayName(colorText("&a確認"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemLore.add("");
+        itemLore.add(colorText("&b這是最終確認, 確認后將&c無法更改"));
+        itemLore.add(colorText("&b規章會&c&l隨時更新&b請自行前往Discord確認最新規章."));
+        itemMeta.setLore(itemLore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+    public static ItemStack ConfirmDeny() {
+        ItemStack itemStack = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(colorText("&c取消"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
 
     private static String colorText(String text) {
         return ChatColor.translateAlternateColorCodes('&', text);
