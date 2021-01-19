@@ -1,6 +1,8 @@
 package me.kokored.speserver.sperulesplugin;
 
-import me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.PlayRules.GUI;
+import me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.ChatRulesGUI;
+import me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.PlayRulesGUI;
+import me.kokored.speserver.sperulesplugin.rulesManager.rulesItem.ChatRules;
 import me.kokored.speserver.sperulesplugin.rulesManager.rulesItem.PlayRules;
 import me.kokored.speserver.sperulesplugin.sql.MySQL;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,8 +20,12 @@ public final class SpeRulesPlugin extends JavaPlugin {
 
         mySQL = new MySQL();
 
-        new GUI();
+        new PlayRulesGUI();
         new PlayRules();
+
+        // Chat Rule 有點問題 稍後再嘗試
+        //new ChatRulesGUI();
+        //new ChatRules();
 
     }
 

@@ -1,7 +1,7 @@
-package me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.PlayRules;
+package me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI;
 
 import me.kokored.speserver.sperulesplugin.SpeRulesPlugin;
-import me.kokored.speserver.sperulesplugin.rulesManager.rulesUtil;
+import me.kokored.speserver.sperulesplugin.rulesManager.RulesUtil;
 import me.kokored.speserver.sperulesplugin.sql.MySqlAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -10,14 +10,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.Plugin;
 
-public class GUI implements CommandExecutor, Listener {
+public class PlayRulesGUI implements CommandExecutor, Listener {
 
     Plugin plugin = SpeRulesPlugin.getPlugin(SpeRulesPlugin.class);
 
-    public GUI() {
+    public PlayRulesGUI() {
         Bukkit.getPluginCommand("rules").setExecutor(this);
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
@@ -32,9 +34,9 @@ public class GUI implements CommandExecutor, Listener {
         Player player = (Player) sender;
 
         if (MySqlAPI.playRulesConfirmed(player.getUniqueId().toString()) == false) {
-            rulesUtil.openNewUserPlayRulesGUI(player);
+            RulesUtil.openNewUserPlayRulesGUI(player);
         }else {
-            rulesUtil.openReadPlayRulesGUI(player);
+            RulesUtil.openReadPlayRulesGUI(player);
         }
 
         return false;
@@ -43,9 +45,24 @@ public class GUI implements CommandExecutor, Listener {
     @EventHandler
     public void onPlayerMoveEvent(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-
         if (MySqlAPI.playRulesConfirmed(player.getUniqueId().toString()) == false) {
-            rulesUtil.openNewUserPlayRulesGUI(player);
+            event.setCancelled(true);
+            RulesUtil.openNewUserPlayRulesGUI(player);
+        }
+    }
+    @EventHandler
+    public void onClickEvent(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        if (MySqlAPI.playRulesConfirmed(player.getUniqueId().toString()) == false) {
+            event.setCancelled(true);
+            RulesUtil.openNewUserPlayRulesGUI(player);
+        }
+    }
+    @EventHandler
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
+        Player player = event.getPlayer();
+        if (MySqlAPI.playRulesConfirmed(player.getUniqueId().toString()) == false) {
+            event.setCancelled(true);
         }
     }
 

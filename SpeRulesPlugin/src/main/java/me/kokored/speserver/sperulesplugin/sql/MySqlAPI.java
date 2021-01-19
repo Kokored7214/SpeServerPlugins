@@ -11,12 +11,26 @@ public class MySqlAPI {
         return b;
     }
 
-    public static void setLinkData(String uuid, String name, String date, Boolean stats) {
-        mySQL.setLinkData(uuid, name, date, stats);
+    public static void setPlayRulesData(String uuid, String name, String date, Boolean stats) {
+        mySQL.setPlayRulesData(uuid, name, date, stats);
     }
 
-    public static void unsetLinkData(String uuid) {
-        mySQL.unsetLinkData(uuid);
+    public static void unsetPlayRulesData(String uuid) {
+        mySQL.unsetPlayRulesData(uuid);
+    }
+
+
+    public static boolean chatRulesConfirmed(String uuid) {
+        Boolean b = mySQL.chatRulesConfirmed(uuid);
+        return b;
+    }
+
+    public static void setChatRulesData(String uuid, String name, String date, Boolean stats) {
+        mySQL.setChatRulesData(uuid, name, date, stats);
+    }
+
+    public static void unsetChatRulesData(String uuid) {
+        mySQL.unsetChatRulesData(uuid);
     }
 
 }

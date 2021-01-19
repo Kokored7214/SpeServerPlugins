@@ -9,3 +9,6 @@ commands:
 
   rules:
     aliases: [ rule ]
+
+  chatrules:
+    aliases: [ chatrule ]

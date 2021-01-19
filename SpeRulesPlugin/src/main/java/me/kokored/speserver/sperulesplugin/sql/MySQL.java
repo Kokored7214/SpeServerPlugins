@@ -185,7 +185,7 @@ public class MySQL {
         }
     }
 
-    public void setLinkData(String uuid, String name, String data, Boolean stats) {
+    public void setPlayRulesData(String uuid, String name, String data, Boolean stats) {
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO " + database + "." + "spe_ruleplugin_play"
                     + " (uuid, name, data, playrules) VALUES (?, ?, ?, ?);");
@@ -199,10 +199,56 @@ public class MySQL {
         }
     }
 
-    public void unsetLinkData(String uuid) {
+    public void unsetPlayRulesData(String uuid) {
         if (playRulesConfirmed(uuid)) {
             try {
                 PreparedStatement ps = connection.prepareStatement("DELETE FROM " + database + "." + "spe_ruleplugin_play"
+                        + "WHERE uuid=?;");
+                ps.setString(1, uuid);
+                ps.executeUpdate();
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public boolean chatRulesConfirmed(String uuid) {
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM " + database + "." + "spe_ruleplugin_chat" + " WHERE uuid=?;");
+            ps.setString(1, uuid);
+            ResultSet result = ps.executeQuery();
+            result.next();
+            Integer resultInt = result.getInt("COUNT(*)");
+            if (resultInt == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void setChatRulesData(String uuid, String name, String data, Boolean stats) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO " + database + "." + "spe_ruleplugin_chat"
+                    + " (uuid, name, data, playrules) VALUES (?, ?, ?, ?);");
+            ps.setString(1, uuid);
+            ps.setString(2, name);
+            ps.setString(3, data);
+            ps.setBoolean(4, stats);
+            ps.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void unsetChatRulesData(String uuid) {
+        if (playRulesConfirmed(uuid)) {
+            try {
+                PreparedStatement ps = connection.prepareStatement("DELETE FROM " + database + "." + "spe_ruleplugin_chat"
                         + "WHERE uuid=?;");
                 ps.setString(1, uuid);
                 ps.executeUpdate();

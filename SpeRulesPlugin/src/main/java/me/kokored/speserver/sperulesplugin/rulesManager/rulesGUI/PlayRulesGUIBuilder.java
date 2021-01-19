@@ -1,25 +1,21 @@
-package me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.PlayRules;
+package me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI;
 
-import me.kokored.speserver.sperulesplugin.SpeRulesPlugin;
 import me.kokored.speserver.sperulesplugin.rulesManager.rulesItem.PlayRules;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.plugin.Plugin;
 
-public class GUIBuilder {
-
-    static Plugin plugin = SpeRulesPlugin.getPlugin(SpeRulesPlugin.class);
+public class PlayRulesGUIBuilder {
 
     public static Inventory getPlayRulesGUI(Player player) {
 
         Inventory inventory = Bukkit.createInventory(player,
-                54, ChatColor.translateAlternateColorCodes('&', "&9&l無語伺服器 &6A章 &f- &6游玩須知"));
+                54, ChatColor.translateAlternateColorCodes('&', "&9&l無語伺服器 &6A章 &f- &6游玩規章"));
 
         inventory.setItem(0, PlayRules.A());
         inventory.setItem(9, PlayRules.NeedToKnown());
-        inventory.setItem(15, PlayRules.Agree());
+        inventory.setItem(16, PlayRules.Agree());
 
         inventory.setItem(2, PlayRules.A1());
         inventory.setItem(3, PlayRules.A2());
