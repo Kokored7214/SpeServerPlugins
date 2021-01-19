@@ -35,8 +35,8 @@ public class PlayRules implements Listener {
 
             if (event.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', "&6A章 &f- &6游玩須知"))) {
                 player.closeInventory();
-                player.sendMessage(colorText("&aplay rules confirmed \n" + rulesUtil.getData()));
-                MySqlAPI.setLinkData(player.getUniqueId().toString(), player.getName(), rulesUtil.getData(), true);
+                player.sendMessage(colorText("&aplay rules confirmed \n" + rulesUtil.getDate()));
+                MySqlAPI.setLinkData(player.getUniqueId().toString(), player.getName(), rulesUtil.getDate(), true);
             }
             /*
             if (event.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', "&c&l拒絕 &6同意條款"))) {
@@ -65,7 +65,7 @@ public class PlayRules implements Listener {
         return itemStack;
     }
     public static ItemStack A1() {
-        ItemStack itemStack = new ItemStack(Material.BOOK);
+        ItemStack itemStack = new ItemStack(Material.BOOK, 1);
         ItemMeta itemMeta = itemStack.getItemMeta();
         ArrayList<String> itemLore = new ArrayList<>();
         itemMeta.setDisplayName(colorText("&6A章 第一條"));
@@ -82,7 +82,7 @@ public class PlayRules implements Listener {
         return itemStack;
     }
     public static ItemStack A2() {
-        ItemStack itemStack = new ItemStack(Material.BOOK);
+        ItemStack itemStack = new ItemStack(Material.BOOK, 2);
         ItemMeta itemMeta = itemStack.getItemMeta();
         ArrayList<String> itemLore = new ArrayList<>();
         itemMeta.setDisplayName(colorText("&6A章 第二條"));
@@ -99,21 +99,21 @@ public class PlayRules implements Listener {
         return itemStack;
     }
     public static ItemStack A3() {
-        ItemStack itemStack = new ItemStack(Material.BOOK);
+        ItemStack itemStack = new ItemStack(Material.BOOK, 3);
         ItemMeta itemMeta = itemStack.getItemMeta();
         ArrayList<String> itemLore = new ArrayList<>();
         itemMeta.setDisplayName(colorText("&6A章 第三條"));
         itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
         itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         itemLore.add("");
-        itemLore.add(colorText("&f請勿在他人的領地周圍(前後左右20格)設置保護區，"));
+        itemLore.add(colorText("&f請勿在他人的領地周圍(前後左右20格)設置保護區"));
         itemLore.add(colorText("&f除非得到雙方同意。"));
         itemMeta.setLore(itemLore);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
     public static ItemStack A4() {
-        ItemStack itemStack = new ItemStack(Material.BOOK);
+        ItemStack itemStack = new ItemStack(Material.BOOK, 4);
         ItemMeta itemMeta = itemStack.getItemMeta();
         ArrayList<String> itemLore = new ArrayList<>();
         itemMeta.setDisplayName(colorText("&6A章 第四條"));
@@ -121,7 +121,51 @@ public class PlayRules implements Listener {
         itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         itemLore.add("");
         itemLore.add(colorText("&f請勿在本伺服器使用任何作弊客戶端或模組遊玩，"));
-        itemLore.add(colorText("&f(連點器除外 &c&l但CPS不能高于&b&l30&f)其他外掛皆不可使用。"));
+        itemLore.add(colorText("&f(連點器除外 &c&l但CPS不能高于&b&l30&f)"));
+        itemLore.add(colorText("&f其他外掛皆不可使用。"));
+        itemMeta.setLore(itemLore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+    public static ItemStack A5() {
+        ItemStack itemStack = new ItemStack(Material.BOOK, 5);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<String> itemLore = new ArrayList<>();
+        itemMeta.setDisplayName(colorText("&6A章 第五條"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemLore.add("");
+        itemLore.add(colorText("&c請勿&f在本伺服器&c公然約&f他人遊玩&b其他minecraft伺服器"));
+        itemLore.add(colorText("&f、宣傳其他伺服器&bDC&f等"));
+        itemMeta.setLore(itemLore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+    public static ItemStack A6() {
+        ItemStack itemStack = new ItemStack(Material.BOOK, 6);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<String> itemLore = new ArrayList<>();
+        itemMeta.setDisplayName(colorText("&6A章 第六條"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemLore.add("");
+        itemLore.add(colorText("&f請勿嘗試使用&cbug&f游玩，違例者之財產將會全數沒收&c(個人洗白)"));
+        itemLore.add(colorText("&d[如果發現bug請你在Discord #《\uD83D\uDCEB》客服 反映]"));
+        itemMeta.setLore(itemLore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+    public static ItemStack A7() {
+        ItemStack itemStack = new ItemStack(Material.BOOK, 7);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<String> itemLore = new ArrayList<>();
+        itemMeta.setDisplayName(colorText("&6A章 第七條"));
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemLore.add("");
+        itemLore.add(colorText("&f如盜用他人賬號遊玩本伺服器被證實後將立即被永久封禁，"));
+        itemLore.add(colorText("&f被盜竊(賬號)的玩家只能請你重新購買新號再次登入伺服器進行賠償"));
+        itemLore.add(colorText("&c&l請玩家不要輕易給予他人自己的遊戲賬號或密碼"));
         itemMeta.setLore(itemLore);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
