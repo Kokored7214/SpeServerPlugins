@@ -52,7 +52,7 @@ public class PlayRulesGUIBuilder {
     public static Inventory getReadPlayRulesGUI(Player player) {
 
         Inventory inventory = Bukkit.createInventory(player,
-                54, ChatColor.translateAlternateColorCodes('&', "&6A章 &f- &6游玩須知"));
+                54, ChatColor.translateAlternateColorCodes('&', "&6A章 &f- &6游玩規章"));
 
         inventory.setItem(0, PlayRules.A());
         inventory.setItem(9, PlayRules.NeedToKnown());

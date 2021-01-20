@@ -1,8 +1,6 @@
 package me.kokored.speserver.sperulesplugin;
 
-import me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.ChatRulesGUI;
 import me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.PlayRulesGUI;
-import me.kokored.speserver.sperulesplugin.rulesManager.rulesItem.ChatRules;
 import me.kokored.speserver.sperulesplugin.rulesManager.rulesItem.PlayRules;
 import me.kokored.speserver.sperulesplugin.sql.MySQL;
 import org.bukkit.plugin.java.JavaPlugin;
