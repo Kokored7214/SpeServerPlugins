@@ -1,0 +1,6 @@
+name: SpePlHiderPlugin
+version: ${project.version}
+main: me.kokored.speserver.speplhiderplugin.SpePlHiderPlugin
+api-version: 1.15
+authors: [ Koko_red7214 ]
+description: 無語伺服器-插件列表隱藏插件
