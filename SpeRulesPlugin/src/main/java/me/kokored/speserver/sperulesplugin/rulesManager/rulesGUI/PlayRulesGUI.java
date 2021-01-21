@@ -61,8 +61,9 @@ public class PlayRulesGUI implements CommandExecutor, Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        if (MySqlAPI.playRulesConfirmed(player.getUniqueId().toString()) == false) {
+        if (MySqlAPI.playRulesConfirmed(player.getUniqueId().toString()) == false && !(event.getMessage().equals("/sperulesplugin:rule"))) {
             event.setCancelled(true);
+            player.chat("/sperulesplugin:rule");
         }
     }
 

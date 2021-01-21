@@ -234,7 +234,7 @@ public class MySQL {
     public void setChatRulesData(String uuid, String name, String data, Boolean stats) {
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO " + database + "." + "spe_ruleplugin_chat"
-                    + " (uuid, name, data, playrules) VALUES (?, ?, ?, ?);");
+                    + " (uuid, name, data, chatrules) VALUES (?, ?, ?, ?);");
             ps.setString(1, uuid);
             ps.setString(2, name);
             ps.setString(3, data);

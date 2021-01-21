@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import me.kokored.speserver.sperulesplugin.SpeRulesPlugin;
 import me.kokored.speserver.sperulesplugin.rulesManager.RulesUtil;
 import me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.ChatRulesGUIBuilder;
-import me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.PlayRulesGUIBuilder;
 import me.kokored.speserver.sperulesplugin.sql.MySqlAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -48,7 +47,7 @@ public class ChatRules implements Listener {
             event.setCancelled(true);
 
         }
-        if (event.getView().getTitle().equals(ChatColor.translateAlternateColorCodes('&', "&b最終確認"))) {
+        if (event.getView().getTitle().equals(ChatColor.translateAlternateColorCodes('&', "&6B章 &f- &6聊天規章 &b最終確認"))) {
 
 
             if (event.getCurrentItem().getItemMeta().getDisplayName().equals(colorText("&a確認"))
@@ -57,39 +56,39 @@ public class ChatRules implements Listener {
                 String name = player.getName();
                 String uuid = player.getUniqueId().toString();
 
-                if (MySqlAPI.playRulesConfirmed(uuid) == false) {
-                    plugin.getLogger().info(colorText("[MySQL] Player " + name + " Agreed Rules B - PlayRules"));
+                if (MySqlAPI.chatRulesConfirmed(uuid) == false) {
+                    plugin.getLogger().info(colorText("[MySQL] Player " + name + " Agreed Rules B - ChatRules"));
                     plugin.getLogger().info(colorText("[MySQL] Saving player " + name + "'s data..."));
                     MySqlAPI.setChatRulesData(uuid, name, RulesUtil.getDate(), true);
                     plugin.getLogger().info(colorText("[MySQL] Player " + name + "'s data is now saved."));
+
+                    player.closeInventory();
+
+                    player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+
+                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+                        }
+                    }, 5);
+                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+                        }
+                    }, 10);
+                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+                        }
+                    }, 15);
+
+                    player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10f, 1f);
+                    player.sendMessage(colorText("&d恭喜你同意了 &6B章 &f- &6聊天規章"));
+                    player.sendMessage(colorText("&b你可以使用指令 &b/chatrules &b再次打開 &6B章 &b來查看規章"));
                 }
-
-                player.closeInventory();
-
-                player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
-
-                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                    @Override
-                    public void run() {
-                        player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
-                    }
-                }, 5);
-                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                    @Override
-                    public void run() {
-                        player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
-                    }
-                }, 10);
-                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                    @Override
-                    public void run() {
-                        player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
-                    }
-                }, 15);
-
-                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10f, 1f);
-                player.sendMessage(colorText("&d恭喜你同意了 &6B章 &f- &6聊天規章"));
-                player.sendMessage(colorText("&b你可以使用指令 &b/chatrules &b再次打開 &6B章 &b來查看規章"));
 
             }
             if (event.getCurrentItem().getItemMeta().getDisplayName().equals(colorText("&c取消"))

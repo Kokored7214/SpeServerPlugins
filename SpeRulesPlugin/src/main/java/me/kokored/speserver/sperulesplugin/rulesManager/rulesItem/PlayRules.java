@@ -47,7 +47,7 @@ public class PlayRules implements Listener {
             event.setCancelled(true);
 
         }
-        if (event.getView().getTitle().equals(ChatColor.translateAlternateColorCodes('&', "&b最終確認"))) {
+        if (event.getView().getTitle().equals(ChatColor.translateAlternateColorCodes('&', "&6A章 &f- &6游玩規章 &b最終確認"))) {
 
 
             if (event.getCurrentItem().getItemMeta().getDisplayName().equals(colorText("&a確認"))
@@ -61,34 +61,34 @@ public class PlayRules implements Listener {
                     plugin.getLogger().info(colorText("[MySQL] Saving player " + name + "'s data..."));
                     MySqlAPI.setPlayRulesData(uuid, name, RulesUtil.getDate(), true);
                     plugin.getLogger().info(colorText("[MySQL] Player " + name + "'s data is now saved."));
+
+                    player.closeInventory();
+
+                    player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+
+                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+                        }
+                    }, 5);
+                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+                        }
+                    }, 10);
+                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+                        }
+                    }, 15);
+
+                    player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10f, 1f);
+                    player.sendMessage(colorText("&d恭喜你同意了 &6A章 &f- &6游玩規章"));
+                    player.sendMessage(colorText("&b你可以使用指令 &b/rules &b再次打開 &6A章 &b來查看規章"));
                 }
-
-                player.closeInventory();
-
-                player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
-
-                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                    @Override
-                    public void run() {
-                        player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
-                    }
-                }, 5);
-                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                    @Override
-                    public void run() {
-                        player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
-                    }
-                }, 10);
-                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                    @Override
-                    public void run() {
-                        player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
-                    }
-                }, 15);
-
-                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10f, 1f);
-                player.sendMessage(colorText("&d恭喜你同意了 &6A章 &f- &6游玩規章"));
-                player.sendMessage(colorText("&b你可以使用指令 &b/rules &b再次打開 &6A章 &b來查看規章"));
 
             }
             if (event.getCurrentItem().getItemMeta().getDisplayName().equals(colorText("&c取消"))

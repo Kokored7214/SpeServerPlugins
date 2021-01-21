@@ -30,7 +30,7 @@ public class ChatRulesGUIBuilder {
     public static Inventory getChatRulesConfirmGUI(Player player) {
 
         Inventory inventory = Bukkit.createInventory(player,
-                27, ChatColor.translateAlternateColorCodes('&', "&b最終確認"));
+                27, ChatColor.translateAlternateColorCodes('&', "&6B章 &f- &6聊天規章 &b最終確認"));
 
         inventory.setItem(11, ChatRules.ConfirmAgree());
         inventory.setItem(13, ChatRules.ConfirmInfo());

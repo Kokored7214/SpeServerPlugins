@@ -44,10 +44,9 @@ public class ChatRulesGUI implements CommandExecutor, Listener {
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         if (MySqlAPI.playRulesConfirmed(player.getUniqueId().toString()) == true
-                && MySqlAPI.chatRulesConfirmed(player.getUniqueId().toString()) == false) {
-
+                && MySqlAPI.chatRulesConfirmed(player.getUniqueId().toString()) == false && !(event.getMessage().equals("/sperulesplugin:chatrule"))) {
             event.setCancelled(true);
-            RulesUtil.openNewUserChatRulesGUI(player);
+            player.chat("/sperulesplugin:chatrule");
         }
     }
 
