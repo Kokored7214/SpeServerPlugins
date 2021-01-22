@@ -56,7 +56,7 @@ public class PlayRules implements Listener {
                 String name = player.getName();
                 String uuid = player.getUniqueId().toString();
 
-                if (MySqlAPI.playRulesConfirmed(uuid) == false) {
+                if (MySqlAPI.playRulesConfirmedByUUID(uuid) == false) {
                     plugin.getLogger().info(colorText("[MySQL] Player " + name + " Agreed Rules A - PlayRules"));
                     plugin.getLogger().info(colorText("[MySQL] Saving player " + name + "'s data..."));
                     MySqlAPI.setPlayRulesData(uuid, name, RulesUtil.getDate(), true);

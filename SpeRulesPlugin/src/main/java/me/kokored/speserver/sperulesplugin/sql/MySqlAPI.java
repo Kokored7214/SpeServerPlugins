@@ -6,8 +6,17 @@ public class MySqlAPI {
 
     static MySQL mySQL = SpeRulesPlugin.getSQL();
 
-    public static boolean playRulesConfirmed(String uuid) {
-        Boolean b = mySQL.playRulesConfirmed(uuid);
+    public static boolean getDbStats() {
+        return mySQL.getDbStats();
+    }
+
+    public static boolean playRulesConfirmedByUUID(String uuid) {
+        Boolean b = mySQL.playRulesConfirmedByUUID(uuid);
+        return b;
+    }
+
+    public static boolean playRulesConfirmedByName(String name) {
+        Boolean b = mySQL.playRulesConfirmedByName(name);
         return b;
     }
 
@@ -15,13 +24,21 @@ public class MySqlAPI {
         mySQL.setPlayRulesData(uuid, name, date, stats);
     }
 
-    public static void unsetPlayRulesData(String uuid) {
-        mySQL.unsetPlayRulesData(uuid);
+    public static void unsetPlayRulesDataByUUID(String uuid) {
+        mySQL.unsetPlayRulesDataByUUID(uuid);
+    }
+    public static void unsetPlayRulesDataByName(String name) {
+        mySQL.unsetPlayRulesDataByName(name);
     }
 
 
-    public static boolean chatRulesConfirmed(String uuid) {
-        Boolean b = mySQL.chatRulesConfirmed(uuid);
+    public static boolean chatRulesConfirmedByUUID(String uuid) {
+        Boolean b = mySQL.chatRulesConfirmedByUUID(uuid);
+        return b;
+    }
+
+    public static boolean chatRulesConfirmedByName(String uuid) {
+        Boolean b = mySQL.chatRulesConfirmedByName(uuid);
         return b;
     }
 
@@ -29,8 +46,11 @@ public class MySqlAPI {
         mySQL.setChatRulesData(uuid, name, date, stats);
     }
 
-    public static void unsetChatRulesData(String uuid) {
-        mySQL.unsetChatRulesData(uuid);
+    public static void unsetChatRulesDataByUUID(String uuid) {
+        mySQL.unsetChatRulesDataByUUID(uuid);
+    }
+    public static void unsetChatRulesDataByName(String name) {
+        mySQL.unsetChatRulesDataByName(name);
     }
 
 }

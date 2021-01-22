@@ -4,6 +4,7 @@ import me.kokored.speserver.sperulesplugin.SpeRulesPlugin;
 import me.kokored.speserver.sperulesplugin.rulesManager.RulesUtil;
 import me.kokored.speserver.sperulesplugin.sql.MySqlAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,7 +32,12 @@ public class ChatRulesGUI implements CommandExecutor, Listener {
 
         Player player = (Player) sender;
 
-        if (MySqlAPI.chatRulesConfirmed(player.getUniqueId().toString()) == false) {
+        if (MySqlAPI.getDbStats() == false) {
+            player.sendMessage(ChatColor.YELLOW + "資料庫尚未就緒, 無法使用此指令");
+            return false;
+        }
+
+        if (MySqlAPI.chatRulesConfirmedByUUID(player.getUniqueId().toString()) == false) {
             RulesUtil.openNewUserChatRulesGUI(player);
         }else {
             RulesUtil.openReadChatRulesGUI(player);
@@ -43,10 +49,20 @@ public class ChatRulesGUI implements CommandExecutor, Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        if (MySqlAPI.playRulesConfirmed(player.getUniqueId().toString()) == true
-                && MySqlAPI.chatRulesConfirmed(player.getUniqueId().toString()) == false && !(event.getMessage().equals("/sperulesplugin:chatrule"))) {
+        if (MySqlAPI.getDbStats() == false) {
+            return;
+        }
+
+        if (MySqlAPI.playRulesConfirmedByUUID(player.getUniqueId().toString()) == true
+                && MySqlAPI.chatRulesConfirmedByUUID(player.getUniqueId().toString()) == false && !(event.getMessage().equals("/chatrule"))) {
             event.setCancelled(true);
-            player.chat("/sperulesplugin:chatrule");
+
+            Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                @Override
+                public void run() {
+                    player.chat("/chatrule");
+                }
+            }, 3);
         }
     }
 

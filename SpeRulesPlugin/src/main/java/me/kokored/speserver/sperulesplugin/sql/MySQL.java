@@ -15,6 +15,8 @@ public class MySQL {
 
     Connection connection;
 
+    Boolean dbstats = false;
+
     String host, database, username, password;
     int port;
 
@@ -74,6 +76,7 @@ public class MySQL {
                     this.username, this.password);
 
         }
+        dbstats = true;
         plugin.getLogger().info("[MySQL] Successfully connected to MySQL.");
     }
 
@@ -83,13 +86,18 @@ public class MySQL {
         }
         try {
             connection.close();
+            dbstats = false;
             plugin.getLogger().info("[MySQL] Successfully disconnected to MySQL.");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void createTable() {
+    public Boolean getDbStats() {
+        return dbstats;
+    }
+
+    public void createTable() {
         try {
             plugin.getLogger().info("[MySQL] Loading data table...");
             Statement playrule = connection.createStatement();
@@ -166,11 +174,29 @@ public class MySQL {
         }
     }
 
-    public boolean playRulesConfirmed(String uuid) {
+    public boolean playRulesConfirmedByUUID(String uuid) {
         try {
             PreparedStatement ps = connection.prepareStatement(
                     "SELECT COUNT(*) FROM " + database + "." + "spe_ruleplugin_play" + " WHERE uuid=?;");
             ps.setString(1, uuid);
+            ResultSet result = ps.executeQuery();
+            result.next();
+            Integer resultInt = result.getInt("COUNT(*)");
+            if (resultInt == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean playRulesConfirmedByName(String name) {
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM " + database + "." + "spe_ruleplugin_play" + " WHERE name=?;");
+            ps.setString(1, name);
             ResultSet result = ps.executeQuery();
             result.next();
             Integer resultInt = result.getInt("COUNT(*)");
@@ -199,8 +225,8 @@ public class MySQL {
         }
     }
 
-    public void unsetPlayRulesData(String uuid) {
-        if (playRulesConfirmed(uuid)) {
+    public void unsetPlayRulesDataByUUID(String uuid) {
+        if (playRulesConfirmedByUUID(uuid)) {
             try {
                 PreparedStatement ps = connection.prepareStatement("DELETE FROM " + database + "." + "spe_ruleplugin_play"
                         + "WHERE uuid=?;");
@@ -211,12 +237,42 @@ public class MySQL {
             }
         }
     }
+    public void unsetPlayRulesDataByName(String name) {
+        if (playRulesConfirmedByName(name)) {
+            try {
+                PreparedStatement ps = connection.prepareStatement("DELETE FROM " + database + "." + "spe_ruleplugin_play"
+                        + "WHERE name=?;");
+                ps.setString(1, name);
+                ps.executeUpdate();
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-    public boolean chatRulesConfirmed(String uuid) {
+    public boolean chatRulesConfirmedByUUID(String uuid) {
         try {
             PreparedStatement ps = connection.prepareStatement(
                     "SELECT COUNT(*) FROM " + database + "." + "spe_ruleplugin_chat" + " WHERE uuid=?;");
             ps.setString(1, uuid);
+            ResultSet result = ps.executeQuery();
+            result.next();
+            Integer resultInt = result.getInt("COUNT(*)");
+            if (resultInt == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean chatRulesConfirmedByName(String name) {
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM " + database + "." + "spe_ruleplugin_chat" + " WHERE name=?;");
+            ps.setString(1, name);
             ResultSet result = ps.executeQuery();
             result.next();
             Integer resultInt = result.getInt("COUNT(*)");
@@ -245,12 +301,24 @@ public class MySQL {
         }
     }
 
-    public void unsetChatRulesData(String uuid) {
-        if (playRulesConfirmed(uuid)) {
+    public void unsetChatRulesDataByUUID(String uuid) {
+        if (chatRulesConfirmedByUUID(uuid)) {
             try {
                 PreparedStatement ps = connection.prepareStatement("DELETE FROM " + database + "." + "spe_ruleplugin_chat"
                         + "WHERE uuid=?;");
                 ps.setString(1, uuid);
+                ps.executeUpdate();
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void unsetChatRulesDataByName(String name) {
+        if (chatRulesConfirmedByName(name)) {
+            try {
+                PreparedStatement ps = connection.prepareStatement("DELETE FROM " + database + "." + "spe_ruleplugin_chat"
+                        + "WHERE name=?;");
+                ps.setString(1, name);
                 ps.executeUpdate();
             }catch (SQLException e) {
                 e.printStackTrace();

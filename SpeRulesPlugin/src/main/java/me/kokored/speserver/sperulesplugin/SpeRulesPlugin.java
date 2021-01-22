@@ -1,5 +1,6 @@
 package me.kokored.speserver.sperulesplugin;
 
+import me.kokored.speserver.sperulesplugin.command.MainCommand;
 import me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.ChatRulesGUI;
 import me.kokored.speserver.sperulesplugin.rulesManager.rulesGUI.PlayRulesGUI;
 import me.kokored.speserver.sperulesplugin.rulesManager.rulesItem.ChatRules;
@@ -19,6 +20,8 @@ public final class SpeRulesPlugin extends JavaPlugin {
         saveDefaultConfig();
 
         mySQL = new MySQL();
+
+        new MainCommand();
 
         new PlayRulesGUI();
         new PlayRules();

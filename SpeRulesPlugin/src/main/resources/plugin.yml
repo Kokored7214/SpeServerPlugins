@@ -7,8 +7,13 @@ description: 無語伺服器-條約及規則插件
 
 commands:
 
+  srp:
+    description: Plugin main command
+
   rules:
     aliases: [ rule ]
+    description: Open play rules gui
 
   chatrules:
     aliases: [ chatrule ]
+    description: Open chat rules gui

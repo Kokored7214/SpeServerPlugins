@@ -56,7 +56,7 @@ public class ChatRules implements Listener {
                 String name = player.getName();
                 String uuid = player.getUniqueId().toString();
 
-                if (MySqlAPI.chatRulesConfirmed(uuid) == false) {
+                if (MySqlAPI.chatRulesConfirmedByUUID(uuid) == false) {
                     plugin.getLogger().info(colorText("[MySQL] Player " + name + " Agreed Rules B - ChatRules"));
                     plugin.getLogger().info(colorText("[MySQL] Saving player " + name + "'s data..."));
                     MySqlAPI.setChatRulesData(uuid, name, RulesUtil.getDate(), true);
