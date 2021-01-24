@@ -1,7 +1,6 @@
 package me.kokored.speserver.speplhiderplugin.manager;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import me.kokored.speserver.speplhiderplugin.SpePlHiderPlugin;
 import org.bukkit.Bukkit;
