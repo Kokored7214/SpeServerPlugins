@@ -1,0 +1,4 @@
+name: SpeBungeePlugin
+version: ${project.version}
+main: me.kokored.speserver.spebungeeplugin.SpeBungeePlugin
+description: 無語伺服器-連綫段管理插件
