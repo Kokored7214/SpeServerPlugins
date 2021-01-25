@@ -1,0 +1,6 @@
+name: SpeEntityControlPlugin
+version: ${project.version}
+main: me.kokored.speserver.speentitycontrolplugin.SpeEntityControlPlugin
+api-version: 1.15
+authors: [ Koko_red7214 ]
+description: 無語伺服器-生物控制插件
