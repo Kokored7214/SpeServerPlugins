@@ -1,8 +1,8 @@
-package me.kokored.speserver.spemanagerplugin;
+package me.kokored.speserver.spemanagerplugin.bungee;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import net.md_5.bungee.api.plugin.Plugin;
 
-public final class SpeManagerPlugin extends JavaPlugin {
+public class SpeManagerPlugin extends Plugin {
 
     @Override
     public void onEnable() {
@@ -14,4 +14,5 @@ public final class SpeManagerPlugin extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
     }
+
 }
