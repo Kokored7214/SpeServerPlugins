@@ -4,9 +4,17 @@ public class ErrorCode {
 
     static String smp = "smpbc_";
 
-    //資料庫尚未設定或未連綫
-    public static String sql_100() {
-        return smp + "sql_100";
+    public static String getErrorCode(String happen) {
+        
+        switch (happen) {
+
+            //資料庫尚未設定或未連綫
+            case "no_sql_connect":
+                return smp + "sql_100";
+
+        }
+
+        return null;
     }
 
 }

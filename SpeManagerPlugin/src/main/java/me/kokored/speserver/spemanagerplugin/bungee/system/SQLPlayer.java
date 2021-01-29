@@ -21,13 +21,13 @@ public class SQLPlayer implements Listener {
         String uuid = player.getUniqueId().toString();
 
         if (MySQL.getDbStats() == false) {
-            Message.consoleLog("sql_error", "error code: " + ErrorCode.sql_100());
+            Message.consoleLog("sql_error", "error code: " + ErrorCode.getErrorCode("no_sql_connect"));
 
             player.disconnect(new ComponentBuilder()
                     .append("在連綫至伺服器時發生錯誤, 請向伺服器技術人員回報此錯誤!").color(ChatColor.RED)
                     .append("\n")
                     .append("\n")
-                    .append("錯誤代碼: ").color(ChatColor.WHITE).append(ErrorCode.sql_100()).color(ChatColor.GRAY)
+                    .append("錯誤代碼: ").color(ChatColor.WHITE).append(ErrorCode.getErrorCode("no_sql_connect")).color(ChatColor.GRAY)
                     .append("\n")
                     .append("時間: ").color(ChatColor.WHITE).append(Date.getDate()).color(ChatColor.GRAY)
                     .append("\n")
