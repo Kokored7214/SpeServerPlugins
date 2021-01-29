@@ -1,7 +1,6 @@
 package me.kokored.speserver.spemanagerplugin.bungee.sql;
 
 import java.sql.*;
-import javax.sql.ConnectionEvent;
 import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;
 import me.kokored.speserver.spemanagerplugin.bungee.util.Date;
 import net.md_5.bungee.api.ProxyServer;

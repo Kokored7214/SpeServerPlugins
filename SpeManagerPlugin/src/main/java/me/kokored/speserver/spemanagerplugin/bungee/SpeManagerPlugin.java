@@ -2,6 +2,7 @@ package me.kokored.speserver.spemanagerplugin.bungee;
 
 import com.google.common.io.ByteStreams;
 import java.io.*;
+import me.kokored.speserver.spemanagerplugin.bungee.discord.DiscordBot;
 import me.kokored.speserver.spemanagerplugin.bungee.sql.MySQL;
 import me.kokored.speserver.spemanagerplugin.bungee.system.SQLPlayer;
 import net.md_5.bungee.api.ProxyServer;
@@ -15,6 +16,7 @@ public class SpeManagerPlugin extends Plugin {
     static ProxyServer proxyServer;
     static Configuration config_bungee;
 
+    DiscordBot discordBot;
     MySQL mySQL;
 
     @Override
@@ -23,6 +25,8 @@ public class SpeManagerPlugin extends Plugin {
         createDefaultConfig();
 
         proxyServer = getProxy();
+
+        discordBot = new DiscordBot();
         mySQL = new MySQL();
 
         getProxy().getPluginManager().registerListener(this, new SQLPlayer());

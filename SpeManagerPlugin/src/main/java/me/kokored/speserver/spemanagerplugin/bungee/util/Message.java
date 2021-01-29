@@ -1,5 +1,6 @@
 package me.kokored.speserver.spemanagerplugin.bungee.util;
 
+import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -56,8 +57,27 @@ public class Message {
 
             online_players.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', message)));
 
+            System.out.println(message);
+
         }
 
+    }
+
+    public static void sendGlobalMessage(TextComponent message) {
+
+        for (ProxiedPlayer online_players : ProxyServer.getInstance().getPlayers()) {
+
+            online_players.sendMessage(message);
+
+            System.out.println(message.toString());
+
+        }
+
+    }
+
+    public static String getColorText(String text) {
+        String return_text = ChatColor.translateAlternateColorCodes('&', text);
+        return return_text;
     }
 
 }
