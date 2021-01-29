@@ -1,5 +1,5 @@
 name: SpeManagerPlugin
 version: ${project.version}
 main: me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin
-authors: [ Koko_red7214 ]
+author: [ Koko_red7214 ]
 description: 無語伺服器-管理系統

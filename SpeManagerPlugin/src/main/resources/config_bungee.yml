@@ -1,0 +1,10 @@
+SQL:
+
+  #MySQL, MariaDB
+  Type: "MySQL"
+
+  host: 'localhost'
+  port: 3306
+  database: ''
+  username: 'minecraft'
+  password: 'minecraft'
