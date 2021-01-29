@@ -30,7 +30,7 @@ public class JoinQuit extends ListenerAdapter {
 
     public static void sendFirstJoinMessage(ProxiedPlayer player) {
 
-        String name = DiscordMessage.getDiscordName(player);
+        String name = player.getName();
 
         EmbedBuilder firstJoinEmbed = new EmbedBuilder();
 
