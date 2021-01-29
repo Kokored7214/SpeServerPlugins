@@ -5,7 +5,7 @@ public class ErrorCode {
     static String smp = "smpbc_";
 
     public static String getErrorCode(String happen) {
-        
+
         switch (happen) {
 
             //資料庫尚未設定或未連綫
@@ -14,7 +14,8 @@ public class ErrorCode {
 
         }
 
-        return null;
+        //未知錯誤
+        return "unknown_error";
     }
 
 }
