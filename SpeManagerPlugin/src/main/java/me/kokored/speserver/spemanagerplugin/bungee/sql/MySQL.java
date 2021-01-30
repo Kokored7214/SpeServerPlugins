@@ -3,7 +3,6 @@ package me.kokored.speserver.spemanagerplugin.bungee.sql;
 import java.sql.*;
 import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;
 import me.kokored.speserver.spemanagerplugin.bungee.util.Message;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.config.Configuration;
 
 public class MySQL {

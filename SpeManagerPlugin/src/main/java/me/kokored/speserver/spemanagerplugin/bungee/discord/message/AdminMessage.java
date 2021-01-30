@@ -1,12 +1,6 @@
 package me.kokored.speserver.spemanagerplugin.bungee.discord.message;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import java.awt.Color;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.time.Instant;
 import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;
 import me.kokored.speserver.spemanagerplugin.bungee.discord.DiscordBot;
