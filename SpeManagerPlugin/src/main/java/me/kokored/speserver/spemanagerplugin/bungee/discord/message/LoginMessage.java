@@ -1,4 +1,4 @@
-package me.kokored.speserver.spemanagerplugin.bungee.discord.player;
+package me.kokored.speserver.spemanagerplugin.bungee.discord.message;
 
 import java.awt.Color;
 import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;
@@ -8,12 +8,11 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.config.Configuration;
 
-public class OnlineStatusMessage extends ListenerAdapter {
+public class LoginMessage {
 
     static JDA jdaApi = DiscordBot.getJDA();
 
@@ -21,12 +20,6 @@ public class OnlineStatusMessage extends ListenerAdapter {
     static String chatChannelId = config_bungee.getString("Discord.channel.ChatChannel");
 
     static TextChannel ChatChannel = jdaApi.getTextChannelById(chatChannelId);
-
-    public OnlineStatusMessage() {
-
-        jdaApi.addEventListener(this);
-
-    }
 
     public static void sendFirstJoinMessage(ProxiedPlayer player) {
 

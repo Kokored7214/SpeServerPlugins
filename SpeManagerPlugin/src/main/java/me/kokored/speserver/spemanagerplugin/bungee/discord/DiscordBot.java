@@ -3,7 +3,6 @@ package me.kokored.speserver.spemanagerplugin.bungee.discord;
 import javax.security.auth.login.LoginException;
 import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;
 import me.kokored.speserver.spemanagerplugin.bungee.discord.bot.SetupActivity;
-import me.kokored.speserver.spemanagerplugin.bungee.discord.player.JoinQuit;
 import me.kokored.speserver.spemanagerplugin.bungee.util.Message;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -34,9 +33,6 @@ public class DiscordBot extends ListenerAdapter implements EventListener {
 
             //bot
             new SetupActivity();
-
-            //player
-            new JoinQuit();
 
         } catch (LoginException e) {
             e.printStackTrace();

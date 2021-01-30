@@ -2,7 +2,10 @@ package me.kokored.speserver.spemanagerplugin.bungee.system;
 
 import java.util.ArrayList;
 import java.util.List;
-import me.kokored.speserver.spemanagerplugin.bungee.discord.player.OnlineStatusMessage;
+import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;
+import me.kokored.speserver.spemanagerplugin.bungee.api.MinecraftAPI;
+import me.kokored.speserver.spemanagerplugin.bungee.discord.message.AdminMessage;
+import me.kokored.speserver.spemanagerplugin.bungee.discord.message.LoginMessage;
 import me.kokored.speserver.spemanagerplugin.bungee.sql.MySQL;
 import me.kokored.speserver.spemanagerplugin.bungee.util.Date;
 import me.kokored.speserver.spemanagerplugin.bungee.util.ErrorCode;
@@ -16,9 +19,12 @@ import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.ServerConnectedEvent;
 import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.event.EventHandler;
 
 public class SQLPlayer implements Listener {
+
+    Configuration config_bungee = SpeManagerPlugin.getConfig_bungee();
 
     List<ProxiedPlayer> preLoginList = new ArrayList<>();
     List<ProxiedPlayer> playingList = new ArrayList<>();
@@ -30,13 +36,13 @@ public class SQLPlayer implements Listener {
         String name = player.getName();
 
         if (MySQL.getDbStats() == false) {
-            Message.consoleLog("sql_error", "error code: " + ErrorCode.getErrorCode("no_sql_connect"));
+            Message.consoleLog("sql_error", "error code: " + ErrorCode.sql_no_sql_connect());
 
             player.disconnect(new ComponentBuilder()
-                    .append("在連綫至伺服器時發生錯誤, 請向伺服器技術人員回報此錯誤!").color(ChatColor.RED)
+                    .append("在連綫至伺服器時發生錯誤, 請向伺服器管理人員回報此錯誤!").color(ChatColor.RED)
                     .append("\n")
                     .append("\n")
-                    .append("錯誤代碼: ").color(ChatColor.WHITE).append(ErrorCode.getErrorCode("no_sql_connect")).color(ChatColor.GRAY)
+                    .append("錯誤代碼: ").color(ChatColor.WHITE).append(ErrorCode.sql_no_sql_connect()).color(ChatColor.GRAY)
                     .append("\n")
                     .append("時間: ").color(ChatColor.WHITE).append(Date.getDate()).color(ChatColor.GRAY)
                     .append("\n")
@@ -44,6 +50,36 @@ public class SQLPlayer implements Listener {
                     .create());
 
             return;
+        }
+
+        try {
+            if (MinecraftAPI.testMcLeaks(player) == true) {
+                if (config_bungee.getBoolean("Setting.mcleaks.kick") == true) {
+
+                    player.disconnect(new ComponentBuilder()
+                            .append("在連綫至伺服器時發生錯誤, 請向伺服器管理人員回報此錯誤!").color(ChatColor.RED)
+                            .append("\n")
+                            .append("\n")
+                            .append("錯誤代碼: ").color(ChatColor.WHITE).append(ErrorCode.account_mcleaks()).color(ChatColor.GRAY)
+                            .append("\n")
+                            .append("時間: ").color(ChatColor.WHITE).append(Date.getDate()).color(ChatColor.GRAY)
+                            .append("\n")
+                            .append("玩家: ").color(ChatColor.WHITE).append(name).color(ChatColor.GRAY)
+                            .create());
+
+                    AdminMessage.sendMcLeaksMessage(player);
+                    Message.sendAdminMessage(Message.getColorText("&f[&c系統&f] &7» &f玩家 &e" + player.getName() +
+                            "&f在進入伺服器時被偵測到為: &cMcLeaks賬號&f(&2acc_101&f)"));
+
+                    return;
+                }
+
+                AdminMessage.sendMcLeaksMessage(player);
+                Message.sendAdminMessage(Message.getColorText("&f[&c系統&f] &7» &f玩家 &e" + player.getName() +
+                        "&f在進入伺服器時被偵測到為: &cMcLeaks賬號&f(&2acc_101&f)"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         preLoginList.add(player);
@@ -64,21 +100,23 @@ public class SQLPlayer implements Listener {
                 MySQL.addPlayer(uuid, name, Date.getDate(), "new_player," + Date.getDate());
 
                 sendFirstJoinMessage(player);
-                OnlineStatusMessage.sendFirstJoinMessage(player);
+                LoginMessage.sendFirstJoinMessage(player);
+                AdminMessage.sendFirstJoinAdminMessage(player);
 
             }
 
             //MySQL.updatePlayerName(player);
 
             sendJoinMessage(player);
-            OnlineStatusMessage.sendJoinMessage(player);
+            LoginMessage.sendJoinMessage(player);
 
             playingList.add(player);
             preLoginList.remove(player);
 
         }else {
 
-            Message.sendAdminMessage(Message.getColorText("&f[&c系統&f] &7» &f玩家 &e" + name + " &f前往了伺服器 &d" + player.getPendingConnection().getName()));
+            Message.sendAdminMessage(Message.getColorText("&f[&c系統&f] &7» &f玩家 &e" + name + " &f前往了伺服器 &d" +
+                    player.getPendingConnection().getName()));
 
         }
 
@@ -92,7 +130,7 @@ public class SQLPlayer implements Listener {
         if (playingList.contains(player)) {
 
             sendQuitMessage(player);
-            OnlineStatusMessage.sendQuitMessage(player);
+            LoginMessage.sendQuitMessage(player);
 
             playingList.remove(player);
 
