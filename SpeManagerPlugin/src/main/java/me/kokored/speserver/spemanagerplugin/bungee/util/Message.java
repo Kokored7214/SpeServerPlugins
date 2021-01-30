@@ -13,22 +13,22 @@ public class Message {
 
         switch (levels) {
             case "info":
-                System.out.println(prefix + "[Info] " + message);
+                ProxyServer.getInstance().getLogger().info(prefix + "[Info] " + message);
                 break;
             case "warning":
-                System.out.println(prefix + "[Warning] " + message);
+                ProxyServer.getInstance().getLogger().warning(prefix + "[Warning] " + message);
                 break;
             case "error":
-                System.out.println(prefix + "[Error] " + message);
+                ProxyServer.getInstance().getLogger().warning(prefix + "[Error] " + message);
                 break;
-            case "sql_info":
-                System.out.println(prefix + "[MySQL-Info] " + message);
+            case "sql":
+                ProxyServer.getInstance().getLogger().info(prefix + "[MySQL] " + message);
                 break;
             case "sql_warning":
-                System.out.println(prefix + "[MySQL-Warning] " + message);
+                ProxyServer.getInstance().getLogger().warning(prefix + "[MySQL-Warning] " + message);
                 break;
             case "sql_error":
-                System.out.println(prefix + "[MySQL-Error] " + message);
+                ProxyServer.getInstance().getLogger().warning(prefix + "[MySQL-Error] " + message);
                 break;
         }
 
@@ -68,7 +68,7 @@ public class Message {
 
             online_players.sendMessage(message);
 
-            System.out.println(message.toString());
+            System.out.println(message.getText());
 
         }
 
