@@ -48,7 +48,7 @@ public class OnlineStatusMessage extends ListenerAdapter {
         int online = ProxyServer.getInstance().getOnlineCount();
 
         String name = DiscordMessage.getDiscordName(player);
-        String text = ":arrow_up:  **" + name + " 上綫了**";
+        String text = ":inbox_tray:  **" + name + " 上綫了**";
 
         jdaApi.getPresence().setActivity(Activity.watching(online + " 位玩家正在游玩"));
 
@@ -61,7 +61,7 @@ public class OnlineStatusMessage extends ListenerAdapter {
         int online = ProxyServer.getInstance().getOnlineCount() - 1;
 
         String name = DiscordMessage.getDiscordName(player);
-        String text = ":small_red_triangle_down:  **" + name + " 下綫了**";
+        String text = ":outbox_tray:  **" + name + " 下綫了**";
 
         if (online > 0) {
             jdaApi.getPresence().setActivity(Activity.watching(online + " 位玩家正在游玩"));
