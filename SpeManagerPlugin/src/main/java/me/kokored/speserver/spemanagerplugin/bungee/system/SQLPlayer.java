@@ -2,7 +2,7 @@ package me.kokored.speserver.spemanagerplugin.bungee.system;
 
 import java.util.ArrayList;
 import java.util.List;
-import me.kokored.speserver.spemanagerplugin.bungee.discord.player.JoinQuit;
+import me.kokored.speserver.spemanagerplugin.bungee.discord.player.OnlineStatusMessage;
 import me.kokored.speserver.spemanagerplugin.bungee.sql.MySQL;
 import me.kokored.speserver.spemanagerplugin.bungee.util.Date;
 import me.kokored.speserver.spemanagerplugin.bungee.util.ErrorCode;
@@ -64,21 +64,21 @@ public class SQLPlayer implements Listener {
                 MySQL.addPlayer(uuid, name, Date.getDate(), "new_player," + Date.getDate());
 
                 sendFirstJoinMessage(player);
-                JoinQuit.sendFirstJoinMessage(player);
+                OnlineStatusMessage.sendFirstJoinMessage(player);
 
             }
 
-            MySQL.updatePlayerName(player);
+            //MySQL.updatePlayerName(player);
 
             sendJoinMessage(player);
-            JoinQuit.sendJoinMessage(player);
+            OnlineStatusMessage.sendJoinMessage(player);
 
             playingList.add(player);
             preLoginList.remove(player);
 
         }else {
 
-            Message.sendAdminMessage(Message.getColorText("&f[&c系統&f] &7» &f玩家 &e" + name + " &f前往了伺服器 &d" + player.getServer().getInfo().getName()));
+            Message.sendAdminMessage(Message.getColorText("&f[&c系統&f] &7» &f玩家 &e" + name + " &f前往了伺服器 &d" + player.getPendingConnection().getName()));
 
         }
 
@@ -92,7 +92,7 @@ public class SQLPlayer implements Listener {
         if (playingList.contains(player)) {
 
             sendQuitMessage(player);
-            JoinQuit.sendQuitMessage(player);
+            OnlineStatusMessage.sendQuitMessage(player);
 
             playingList.remove(player);
 
@@ -105,7 +105,7 @@ public class SQLPlayer implements Listener {
         TextComponent msg = new TextComponent(Message.getColorText("&6✦ &b歡迎新玩家 &e" + player.getName() + " &b加入無語伺服器!"));
         msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder()
                 .append("加入日期: ").color(ChatColor.WHITE)
-                .append(Date.getDate()).color(ChatColor.GRAY)
+                .append(Date.getDate("yyyy/MM/dd HH:mm")).color(ChatColor.GRAY)
                 .create()));
 
         Message.sendGlobalMessage(msg);
