@@ -2,14 +2,11 @@ package me.kokored.speserver.spemanagerplugin.bungee.sql;
 
 import java.sql.*;
 import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;
-import me.kokored.speserver.spemanagerplugin.bungee.util.Date;
+import me.kokored.speserver.spemanagerplugin.bungee.util.Message;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.config.Configuration;
 
 public class MySQL {
-
-    static ProxyServer plugin = SpeManagerPlugin.getProxyServer();
 
     static Configuration config_bungee = SpeManagerPlugin.getConfig_bungee();
 
@@ -34,22 +31,22 @@ public class MySQL {
         if (sqlType.equals("MySQL") || sqlType.equals("MariaDB")) {
 
             if (database.equals("") || username.equals("") || password.equals("")) {
-                plugin.getLogger().warning("[MySQL] Database didn't setup, setup at config.yml file.");
+                Message.consoleLog("sql_warning", "Database didn't setup, setup at config.yml file.");
                 return;
             }
 
             try {
-                plugin.getLogger().info("[MySQL] Trying to connect MySQL...");
+                Message.consoleLog("sql", "Trying to connect MySQL...");
                 openConnection();
                 createTable();
             } catch (ClassNotFoundException | SQLException e) {
-                plugin.getLogger().warning("[MySQL] Fail to connect MySQL!");
+                Message.consoleLog("sql_warning", "Fail to connect MySQL!");
                 e.printStackTrace();
             }
 
             return;
         }
-        plugin.getLogger().warning("[MySQL] MySQL type was not support...");
+        Message.consoleLog("sql_warning", "MySQL type was not support...");
 
     }
 
@@ -79,7 +76,7 @@ public class MySQL {
 
         }
         dbstats = true;
-        plugin.getLogger().info("[MySQL] Successfully connected to MySQL.");
+        Message.consoleLog("sql", "Successfully connected to MySQL.");
     }
 
     public void disconnect() {
@@ -89,7 +86,7 @@ public class MySQL {
         try {
             connection.close();
             dbstats = false;
-            plugin.getLogger().info("[MySQL] Successfully disconnected to MySQL.");
+            Message.consoleLog("sql", "Successfully disconnected to MySQL.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -101,16 +98,16 @@ public class MySQL {
 
     public void createTable() {
         try {
-            plugin.getLogger().info("[MySQL] Loading data table...");
+            Message.consoleLog("sql", "Loading data table...");
             Statement plist = connection.createStatement();
             String plist_code = "CREATE TABLE IF NOT EXISTS " + database + "." + "spe_system_playerlist"
                     + " (" + "uuid CHAR(36) PRIMARY KEY," + "name CHAR(16) NOT NULL,"
                     + "join_date CHAR(15)," + "last_update CHAR(40)" + ");";
             plist.execute(plist_code);
 
-            plugin.getLogger().info("[MySQL] Data table loaded.");
+            Message.consoleLog("sql", "Data table loaded.");
         } catch (SQLException e) {
-            plugin.getLogger().warning("[MySQL] Fail to load Data table!");
+            Message.consoleLog("sql_warning", "Fail to load Data table!");
             e.printStackTrace();
         }
     }
@@ -163,6 +160,7 @@ public class MySQL {
         }
     }
 
+    /*
     public static void updatePlayerName(ProxiedPlayer player) {
         String uuid = player.getUniqueId().toString();
         String name = player.getName();
@@ -171,12 +169,11 @@ public class MySQL {
                     "SELECT * FROM " + database + "." + "spe_system_playerlist" + " WHERE uuid=?");
             ps.setString(1, uuid);
             ResultSet resultSet = ps.executeQuery();
-            if (resultSet.next()) {
+            if (resultSet.next() == true) {
                 resultSet.beforeFirst();
-                resultSet.next();
                 String nameFormSql = resultSet.getString("name");
                 if (!nameFormSql.equals(name)) {
-                    plugin.getLogger().info("[MySQL] Player " + nameFormSql + " login with a new name " + name);
+                    Message.consoleLog("sql", "Player " + nameFormSql + " login with a new name " + name);
                     PreparedStatement psUpdate = connection.prepareStatement("UPDATE "
                             + database + "." + "spe_system_playerlist" + " set name=?, last_update=? where uuid=?;");
                     psUpdate.setString(1, name);
@@ -184,7 +181,7 @@ public class MySQL {
                     psUpdate.setString(3, uuid);
                     psUpdate.executeUpdate();
 
-                    plugin.getLogger().info("[MySQL] Player name updated : " + nameFormSql + " -> " + name);
+                    Message.consoleLog("sql", "Player name updated : " + nameFormSql + " -> " + name);
 
                 }
             }
@@ -192,5 +189,6 @@ public class MySQL {
             e.printStackTrace();
         }
     }
+    */
 
 }
