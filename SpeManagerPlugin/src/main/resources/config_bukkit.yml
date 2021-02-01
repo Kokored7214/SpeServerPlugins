@@ -1,0 +1,13 @@
+SQL:
+  #MySQL, MariaDB
+  Type: 'MySQL'
+  host: 'localhost'
+  port: 3306
+  database: ''
+  username: 'minecraft'
+  password: 'minecraft'
+
+#啓用或關閉某些功能
+Features:
+  #死亡扣除經驗或金錢
+  DeathExp: true
