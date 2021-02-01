@@ -79,4 +79,12 @@ public class Message {
         return return_text;
     }
 
+    public static String getBooleanText(Boolean booleanToChange) {
+        if (booleanToChange == true) {
+            return getColorText("&a是");
+        }else {
+            return getColorText("&c否");
+        }
+    }
+
 }

@@ -5,7 +5,7 @@ import java.time.Instant;
 import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;
 import me.kokored.speserver.spemanagerplugin.bungee.discord.DiscordBot;
 import me.kokored.speserver.spemanagerplugin.bungee.api.MinecraftAPI;
-import me.kokored.speserver.spemanagerplugin.bungee.util.Date;
+import me.kokored.speserver.spemanagerplugin.core.util.Date;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -45,7 +45,7 @@ public class AdminMessage {
 
     }
 
-    public static void sendMcLeaksMessage(ProxiedPlayer player) {
+    public static void sendMcLeaksMessage(ProxiedPlayer player, String kick) {
 
         String name = player.getName();
 
@@ -59,6 +59,7 @@ public class AdminMessage {
         embedBuilder.setTitle("新玩家偵測到為違規賬號");
 
         embedBuilder.addField("違規内容:", "使用Mcleaks賬號", false);
+        embedBuilder.addField("踢出玩家:", kick, false);
 
         embedBuilder.setFooter("SMPBC - 系統通知", "https://imgur.com/8bZWBFa");
         embedBuilder.setTimestamp(Instant.now());

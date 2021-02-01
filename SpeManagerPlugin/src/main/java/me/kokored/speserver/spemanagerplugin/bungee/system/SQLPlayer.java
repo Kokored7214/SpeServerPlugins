@@ -6,9 +6,10 @@ import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;
 import me.kokored.speserver.spemanagerplugin.bungee.api.MinecraftAPI;
 import me.kokored.speserver.spemanagerplugin.bungee.discord.message.AdminMessage;
 import me.kokored.speserver.spemanagerplugin.bungee.discord.message.LoginMessage;
+import me.kokored.speserver.spemanagerplugin.bungee.discord.util.DiscordMessage;
 import me.kokored.speserver.spemanagerplugin.bungee.sql.MySQL;
-import me.kokored.speserver.spemanagerplugin.bungee.util.Date;
-import me.kokored.speserver.spemanagerplugin.bungee.util.ErrorCode;
+import me.kokored.speserver.spemanagerplugin.core.util.Date;
+import me.kokored.speserver.spemanagerplugin.core.util.ErrorCode;
 import me.kokored.speserver.spemanagerplugin.bungee.util.Message;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -67,14 +68,14 @@ public class SQLPlayer implements Listener {
                             .append("玩家: ").color(ChatColor.WHITE).append(name).color(ChatColor.GRAY)
                             .create());
 
-                    AdminMessage.sendMcLeaksMessage(player);
+                    AdminMessage.sendMcLeaksMessage(player, DiscordMessage.getBooleanText(true));
                     Message.sendAdminMessage(Message.getColorText("&f[&c系統&f] &7» &f玩家 &e" + player.getName() +
                             "&f在進入伺服器時被偵測到為: &cMcLeaks賬號&f(&2acc_101&f)"));
 
                     return;
                 }
 
-                AdminMessage.sendMcLeaksMessage(player);
+                AdminMessage.sendMcLeaksMessage(player, DiscordMessage.getBooleanText(false));
                 Message.sendAdminMessage(Message.getColorText("&f[&c系統&f] &7» &f玩家 &e" + player.getName() +
                         "&f在進入伺服器時被偵測到為: &cMcLeaks賬號&f(&2acc_101&f)"));
             }

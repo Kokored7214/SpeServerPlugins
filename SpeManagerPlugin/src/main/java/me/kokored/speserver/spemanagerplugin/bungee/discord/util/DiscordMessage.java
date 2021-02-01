@@ -15,4 +15,12 @@ public class DiscordMessage {
         return return_text;
     }
 
+    public static String getBooleanText(Boolean booleanToChange) {
+        if (booleanToChange == true) {
+            return "是";
+        }else {
+            return "否";
+        }
+    }
+
 }
