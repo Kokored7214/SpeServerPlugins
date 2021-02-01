@@ -1,4 +1,4 @@
-package me.kokored.speserver.spemanagerplugin.bungee.util;
+package me.kokored.speserver.spemanagerplugin.core.util;
 
 import java.text.SimpleDateFormat;
 
