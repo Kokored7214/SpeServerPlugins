@@ -8,7 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.Plugin;
 
 public class MySQL implements Listener {
@@ -146,7 +146,7 @@ public class MySQL implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoinEvent(PlayerJoinEvent event) {
+    public void onPlayerLoginEvent(PlayerLoginEvent event) {
         Player player = event.getPlayer();
         setupDefaultData(player.getUniqueId().toString(), player.getName());
     }
@@ -155,11 +155,18 @@ public class MySQL implements Listener {
         if (!(hasPlayer(uuid))) {
             try {
                 PreparedStatement ps = connection.prepareStatement("INSERT INTO " + database + "." +
-                        "spe_system_playerlist" + " (uuid, name, death_exp) VALUES (?, ?, ?);");
+                        "spe_system_feature_switch" + " (uuid, name, death_exp) VALUES (?, ?, ?);");
                 ps.setString(1, uuid);
                 ps.setString(2, name);
                 ps.setInt(3, 0);
                 ps.executeUpdate();
+
+                PreparedStatement ps1 = connection.prepareStatement("INSERT INTO " + database + "." +
+                        "spe_system_feature_notify" + " (uuid, name, death_exp) VALUES (?, ?, ?);");
+                ps1.setString(1, uuid);
+                ps1.setString(2, name);
+                ps1.setBoolean(3, true);
+                ps1.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

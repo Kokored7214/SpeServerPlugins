@@ -13,26 +13,24 @@ public class Message {
 
     public static void consoleLog(String levels, String message) {
 
-        String prefix = "[SpeManagerPlugin-BU] ";
-
         switch (levels) {
             case "info":
-                plugin.getLogger().info(prefix + "[Info] " + message);
+                plugin.getLogger().info("[Info] " + message);
                 break;
             case "warning":
-                plugin.getLogger().warning(prefix + "[Warning] " + message);
+                plugin.getLogger().warning("[Warning] " + message);
                 break;
             case "error":
-                plugin.getLogger().warning(prefix + "[Error] " + message);
+                plugin.getLogger().warning("[Error] " + message);
                 break;
             case "sql":
-                plugin.getLogger().info(prefix + "[MySQL] " + message);
+                plugin.getLogger().info("[MySQL] " + message);
                 break;
             case "sql_warning":
-                plugin.getLogger().warning(prefix + "[MySQL-Warning] " + message);
+                plugin.getLogger().warning("[MySQL-Warning] " + message);
                 break;
             case "sql_error":
-                plugin.getLogger().warning(prefix + "[MySQL-Error] " + message);
+                plugin.getLogger().warning("[MySQL-Error] " + message);
                 break;
         }
 

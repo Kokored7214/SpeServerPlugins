@@ -10,6 +10,12 @@ public class ErrorCode {
         return return_text;
     }
 
+    //經濟類
+    public static String vault_eco_null() {
+        String return_text = "eco_null";
+        return return_text;
+    }
+
     //Minecraft賬號類
     public static String account_mcleaks() {
         String return_text = "acc_101";

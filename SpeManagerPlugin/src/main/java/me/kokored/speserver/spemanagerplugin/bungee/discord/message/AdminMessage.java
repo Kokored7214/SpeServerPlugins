@@ -34,7 +34,7 @@ public class AdminMessage {
 
         embedBuilder.setTitle("新玩家加入了伺服器");
 
-        embedBuilder.addField("加入日期:", Date.getDate("yyyy年 MM月 dd日 HH:mm:ss"), false);
+        embedBuilder.addField("加入日期:", Date.getDate("yyyy年/MM/dd HH:mm:ss"), false);
         embedBuilder.addField("玩家ID:", player.getName(), false);
         embedBuilder.addField("UUID:", player.getUniqueId().toString(), false);
 

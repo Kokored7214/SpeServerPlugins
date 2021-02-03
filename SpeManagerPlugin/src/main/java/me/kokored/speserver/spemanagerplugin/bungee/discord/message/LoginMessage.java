@@ -2,6 +2,7 @@ package me.kokored.speserver.spemanagerplugin.bungee.discord.message;
 
 import java.awt.Color;
 import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;
+import me.kokored.speserver.spemanagerplugin.bungee.api.MinecraftAPI;
 import me.kokored.speserver.spemanagerplugin.bungee.discord.DiscordBot;
 import me.kokored.speserver.spemanagerplugin.bungee.discord.util.DiscordMessage;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -29,8 +30,7 @@ public class LoginMessage {
 
         firstJoinEmbed.setColor(new Color(255, 198, 26));
 
-        firstJoinEmbed.setAuthor("歡迎新玩家 " + name + " 加入無語伺服器!", null,
-                "https://crafatar.com/avatars/" + player.getUniqueId().toString().replace("-", "") + ".png?overlay");
+        firstJoinEmbed.setAuthor("歡迎新玩家 " + name + " 加入無語伺服器!", null, MinecraftAPI.getPlayerAvatars(player));
 
         ChatChannel.sendMessage(firstJoinEmbed.build()).queue();
 
