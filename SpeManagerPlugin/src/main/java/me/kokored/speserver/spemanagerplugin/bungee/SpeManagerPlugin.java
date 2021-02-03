@@ -3,7 +3,7 @@ package me.kokored.speserver.spemanagerplugin.bungee;
 import com.google.common.io.ByteStreams;
 import java.io.*;
 import me.kokored.speserver.spemanagerplugin.bungee.discord.DiscordBot;
-import me.kokored.speserver.spemanagerplugin.bungee.sql.MySQL;
+import me.kokored.speserver.spemanagerplugin.bungee.api.sql.MySQL;
 import me.kokored.speserver.spemanagerplugin.bungee.system.SQLPlayer;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;

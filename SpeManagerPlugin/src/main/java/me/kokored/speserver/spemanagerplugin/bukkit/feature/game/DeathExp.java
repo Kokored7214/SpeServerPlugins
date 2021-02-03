@@ -1,14 +1,14 @@
-package me.kokored.speserver.spemanagerplugin.bukkit.features.player;
+package me.kokored.speserver.spemanagerplugin.bukkit.feature.game;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import me.kokored.speserver.spemanagerplugin.bukkit.SpeManagerPlugin;
 import me.kokored.speserver.spemanagerplugin.bukkit.api.VaultAPI;
-import me.kokored.speserver.spemanagerplugin.bukkit.config.Configs;
-import me.kokored.speserver.spemanagerplugin.bukkit.features.gui.guis.switchGUI.SwitchGUI;
-import me.kokored.speserver.spemanagerplugin.bukkit.sql.MySQL;
-import me.kokored.speserver.spemanagerplugin.bukkit.sql.table.Feature_switch;
+import me.kokored.speserver.spemanagerplugin.bukkit.api.config.Configs;
+import me.kokored.speserver.spemanagerplugin.bukkit.feature.inventory.guis.switchGUI.SwitchGUI;
+import me.kokored.speserver.spemanagerplugin.bukkit.api.sql.MySQL;
+import me.kokored.speserver.spemanagerplugin.bukkit.api.sql.table.Feature_switch;
 import me.kokored.speserver.spemanagerplugin.bukkit.util.Message;
 import me.kokored.speserver.spemanagerplugin.bukkit.util.Sound;
 import me.kokored.speserver.spemanagerplugin.core.util.Date;

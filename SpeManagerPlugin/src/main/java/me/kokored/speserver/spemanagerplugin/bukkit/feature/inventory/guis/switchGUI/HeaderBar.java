@@ -1,10 +1,9 @@
-package me.kokored.speserver.spemanagerplugin.bukkit.features.gui.guis.switchGUI.util;
+package me.kokored.speserver.spemanagerplugin.bukkit.feature.inventory.guis.switchGUI;
 
 import java.util.ArrayList;
 import java.util.List;
 import me.kokored.speserver.spemanagerplugin.bukkit.SpeManagerPlugin;
-import me.kokored.speserver.spemanagerplugin.bukkit.features.gui.guis.switchGUI.SwitchGUI;
-import me.kokored.speserver.spemanagerplugin.bukkit.features.player.DeathExp;
+import me.kokored.speserver.spemanagerplugin.bukkit.feature.inventory.guis.switchGUI.SwitchGUI;
 import me.kokored.speserver.spemanagerplugin.bukkit.util.Message;
 import me.kokored.speserver.spemanagerplugin.bukkit.util.Sound;
 import org.bukkit.Bukkit;

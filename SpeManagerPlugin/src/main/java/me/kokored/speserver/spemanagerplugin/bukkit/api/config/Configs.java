@@ -1,6 +1,6 @@
-package me.kokored.speserver.spemanagerplugin.bukkit.config;
+package me.kokored.speserver.spemanagerplugin.bukkit.api.config;
 
-import me.kokored.speserver.spemanagerplugin.bukkit.config.configs.DefaultConfig;
+import me.kokored.speserver.spemanagerplugin.bukkit.api.config.configs.DefaultConfig;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class Configs {

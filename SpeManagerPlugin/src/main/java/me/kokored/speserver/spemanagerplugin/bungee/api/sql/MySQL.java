@@ -1,4 +1,4 @@
-package me.kokored.speserver.spemanagerplugin.bungee.sql;
+package me.kokored.speserver.spemanagerplugin.bungee.api.sql;
 
 import java.sql.*;
 import me.kokored.speserver.spemanagerplugin.bungee.SpeManagerPlugin;

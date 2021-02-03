@@ -1,8 +1,8 @@
-package me.kokored.speserver.spemanagerplugin.bukkit.sql;
+package me.kokored.speserver.spemanagerplugin.bukkit.api.sql;
 
 import java.sql.*;
 import me.kokored.speserver.spemanagerplugin.bukkit.SpeManagerPlugin;
-import me.kokored.speserver.spemanagerplugin.bukkit.config.Configs;
+import me.kokored.speserver.spemanagerplugin.bukkit.api.config.Configs;
 import me.kokored.speserver.spemanagerplugin.bukkit.util.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

@@ -1,9 +1,8 @@
-package me.kokored.speserver.spemanagerplugin.bukkit.config.configs;
+package me.kokored.speserver.spemanagerplugin.bukkit.api.config.configs;
 
 import java.io.File;
 import java.io.IOException;
 import me.kokored.speserver.spemanagerplugin.bukkit.SpeManagerPlugin;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;

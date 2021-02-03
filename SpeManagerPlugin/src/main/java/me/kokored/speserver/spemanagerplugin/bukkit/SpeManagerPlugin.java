@@ -1,11 +1,10 @@
 package me.kokored.speserver.spemanagerplugin.bukkit;
 
 import me.kokored.speserver.spemanagerplugin.bukkit.api.VaultAPI;
-import me.kokored.speserver.spemanagerplugin.bukkit.config.Configs;
-import me.kokored.speserver.spemanagerplugin.bukkit.features.gui.GUIHandler;
-import me.kokored.speserver.spemanagerplugin.bukkit.features.gui.guis.switchGUI.SwitchGUI;
-import me.kokored.speserver.spemanagerplugin.bukkit.features.player.DeathExp;
-import me.kokored.speserver.spemanagerplugin.bukkit.sql.MySQL;
+import me.kokored.speserver.spemanagerplugin.bukkit.api.config.Configs;
+import me.kokored.speserver.spemanagerplugin.bukkit.feature.inventory.GUIHandler;
+import me.kokored.speserver.spemanagerplugin.bukkit.feature.game.DeathExp;
+import me.kokored.speserver.spemanagerplugin.bukkit.api.sql.MySQL;
 import me.kokored.speserver.spemanagerplugin.bukkit.util.Message;
 import org.bukkit.plugin.java.JavaPlugin;
 

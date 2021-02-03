@@ -7,7 +7,7 @@ import me.kokored.speserver.spemanagerplugin.bungee.api.MinecraftAPI;
 import me.kokored.speserver.spemanagerplugin.bungee.discord.message.AdminMessage;
 import me.kokored.speserver.spemanagerplugin.bungee.discord.message.LoginMessage;
 import me.kokored.speserver.spemanagerplugin.bungee.discord.util.DiscordMessage;
-import me.kokored.speserver.spemanagerplugin.bungee.sql.MySQL;
+import me.kokored.speserver.spemanagerplugin.bungee.api.sql.MySQL;
 import me.kokored.speserver.spemanagerplugin.core.util.Date;
 import me.kokored.speserver.spemanagerplugin.core.util.ErrorCode;
 import me.kokored.speserver.spemanagerplugin.bungee.util.Message;
