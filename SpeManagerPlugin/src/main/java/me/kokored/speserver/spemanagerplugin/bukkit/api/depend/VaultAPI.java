@@ -1,4 +1,4 @@
-package me.kokored.speserver.spemanagerplugin.bukkit.api;
+package me.kokored.speserver.spemanagerplugin.bukkit.api.depend;
 
 import me.kokored.speserver.spemanagerplugin.bukkit.SpeManagerPlugin;
 import net.milkbowl.vault.economy.Economy;

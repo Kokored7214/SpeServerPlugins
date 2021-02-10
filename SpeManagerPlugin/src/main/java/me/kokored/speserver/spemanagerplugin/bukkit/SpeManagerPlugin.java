@@ -1,11 +1,15 @@
 package me.kokored.speserver.spemanagerplugin.bukkit;
 
-import me.kokored.speserver.spemanagerplugin.bukkit.api.VaultAPI;
+import me.kokored.speserver.spemanagerplugin.bukkit.api.depend.VaultAPI;
 import me.kokored.speserver.spemanagerplugin.bukkit.api.config.Configs;
-import me.kokored.speserver.spemanagerplugin.bukkit.feature.inventory.GUIHandler;
-import me.kokored.speserver.spemanagerplugin.bukkit.feature.game.DeathExp;
 import me.kokored.speserver.spemanagerplugin.bukkit.api.sql.MySQL;
+import me.kokored.speserver.spemanagerplugin.bukkit.features.enchantments.CustomEnchants;
+import me.kokored.speserver.spemanagerplugin.bukkit.features.DeathExp;
+import me.kokored.speserver.spemanagerplugin.bukkit.features.inventory.CustomInventory;
+import me.kokored.speserver.spemanagerplugin.bukkit.features.item.CustomItems;
 import me.kokored.speserver.spemanagerplugin.bukkit.util.Message;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SpeManagerPlugin extends JavaPlugin {
@@ -26,14 +30,22 @@ public final class SpeManagerPlugin extends JavaPlugin {
 
         init();
 
+        new CustomEnchants();
+        new CustomInventory();
+        new CustomItems();
         new DeathExp();
-        new GUIHandler();
 
     }
 
     @Override
     public void onDisable() {
 
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (player.getOpenInventory() != null)
+                player.closeInventory();
+        }
+
+        CustomItems.disable();
         mySQL.disconnect();
 
     }

@@ -1,12 +1,12 @@
-package me.kokored.speserver.spemanagerplugin.bukkit.feature.game;
+package me.kokored.speserver.spemanagerplugin.bukkit.features;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import me.kokored.speserver.spemanagerplugin.bukkit.SpeManagerPlugin;
-import me.kokored.speserver.spemanagerplugin.bukkit.api.VaultAPI;
-import me.kokored.speserver.spemanagerplugin.bukkit.api.config.Configs;
-import me.kokored.speserver.spemanagerplugin.bukkit.feature.inventory.guis.switchGUI.SwitchGUI;
+import me.kokored.speserver.spemanagerplugin.bukkit.api.custom.Feature;
+import me.kokored.speserver.spemanagerplugin.bukkit.api.depend.VaultAPI;
+import me.kokored.speserver.spemanagerplugin.bukkit.features.inventory.switchGui.SwitchGUI;
 import me.kokored.speserver.spemanagerplugin.bukkit.api.sql.MySQL;
 import me.kokored.speserver.spemanagerplugin.bukkit.api.sql.table.Feature_switch;
 import me.kokored.speserver.spemanagerplugin.bukkit.util.Message;
@@ -34,23 +34,20 @@ public class DeathExp implements Listener {
 
     Plugin plugin = SpeManagerPlugin.getPlugin(SpeManagerPlugin.class);
 
-    private static String invTitle = Message.getColorText("&6&l無語系統 &7» &d死亡處罰選擇");
-    private static String invConfirmTitle = Message.getColorText("&6&l無語系統 &7» &d死亡處罰確認");
+    private static final String invTitle = Message.getColorText("&6&l無語系統 &7» &d死亡處罰選擇");
+    private static final String invConfirmTitle = Message.getColorText("&6&l無語系統 &7» &d死亡處罰確認");
 
-    private static String expLevel = Message.getColorText("&d經驗等級");
-    private static String money = Message.getColorText("&6玩家金錢");
-    private static String confirm0 = Message.getColorText("&a確認 - &d經驗等級");
-    private static String confirm1 = Message.getColorText("&a確認 - &6玩家金錢");
-    private static String goBack = Message.getColorText("&7返回");
+    private static final String expLevel = Message.getColorText("&d經驗等級");
+    private static final String money = Message.getColorText("&6玩家金錢");
+    private static final String confirm0 = Message.getColorText("&a確認 - &d經驗等級");
+    private static final String confirm1 = Message.getColorText("&a確認 - &6玩家金錢");
+    private static final String goBack = Message.getColorText("&7返回");
 
     public DeathExp() {
-
-        if (Configs.get("config_bukkit").getBoolean("Features.DeathExp") == false) {
+        if (!Feature.checkFeature(Feature.DEATH_EXP()))
             return;
-        }
 
         Bukkit.getPluginManager().registerEvents(this, plugin);
-
     }
 
     @EventHandler
@@ -274,10 +271,9 @@ public class DeathExp implements Listener {
     public void onInventoryClickEvent(InventoryClickEvent event) {
 
         Player player = (Player) event.getWhoClicked();
-        String itemName = event.getCurrentItem().getItemMeta().getDisplayName();
 
         if (event.getView().getTitle().equals(invTitle)) {
-
+            String itemName = event.getCurrentItem().getItemMeta().getDisplayName();
 
             if (itemName.equals(expLevel)) {
                 player.updateInventory();
@@ -303,6 +299,8 @@ public class DeathExp implements Listener {
         }
 
         if (event.getView().getTitle().equals(invConfirmTitle)) {
+            String itemName = event.getCurrentItem().getItemMeta().getDisplayName();
+
             if (itemName.equals(confirm0)) {
                 player.updateInventory();
                 player.closeInventory();

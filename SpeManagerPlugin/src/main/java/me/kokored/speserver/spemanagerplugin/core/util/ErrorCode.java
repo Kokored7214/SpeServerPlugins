@@ -6,20 +6,17 @@ public class ErrorCode {
 
     //MySQL類
     public static String sql_no_sql_connect() {
-        String return_text = "sql_101";
-        return return_text;
+        return "sql_101";
     }
 
     //經濟類
     public static String vault_eco_null() {
-        String return_text = "eco_null";
-        return return_text;
+        return "eco_null";
     }
 
     //Minecraft賬號類
     public static String account_mcleaks() {
-        String return_text = "acc_101";
-        return return_text;
+        return "acc_101";
     }
 
 }

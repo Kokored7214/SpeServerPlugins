@@ -6,7 +6,7 @@
 
     <groupId>me.kokored.speserver</groupId>
     <artifactId>SpeManagerPlugin</artifactId>
-    <version>1.5</version>
+    <version>1.6</version>
     <packaging>jar</packaging>
 
     <name>SpeManagerPlugin</name>
@@ -64,10 +64,12 @@
     </build>
 
     <repositories>
+        <!-- PaperAPI -->
         <repository>
-            <id>spigotmc-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+            <id>papermc</id>
+            <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
+        <!-- BungeeCord -->
         <repository>
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
@@ -77,11 +79,13 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
 
+        <!-- JavaDiscordAPI -->
         <repository>
             <id>jcenter</id>
             <name>jcenter-bintray</name>
             <url>https://jcenter.bintray.com</url>
         </repository>
+        <!-- VaultAPI -->
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
@@ -89,12 +93,14 @@
     </repositories>
 
     <dependencies>
+        <!-- PaperAPI -->
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
+            <groupId>com.destroystokyo.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!-- BungeeCord -->
         <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
@@ -110,11 +116,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- JavaDiscordAPI -->
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
             <version>4.2.0_208</version>
         </dependency>
+        <!-- VaultAPI -->
         <dependency>
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>VaultAPI</artifactId>

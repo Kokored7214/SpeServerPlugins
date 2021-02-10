@@ -12,6 +12,7 @@ import me.kokored.speserver.spemanagerplugin.core.util.Date;
 import me.kokored.speserver.spemanagerplugin.core.util.ErrorCode;
 import me.kokored.speserver.spemanagerplugin.bungee.util.Message;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -32,6 +33,8 @@ public class SQLPlayer implements Listener {
 
     @EventHandler
     public void onPostLogin(PostLoginEvent event) {
+
+        ProxyServer.getInstance().getPluginManager().registerListener(SpeManagerPlugin.getPlugin(), this);
 
         ProxiedPlayer player = event.getPlayer();
         String name = player.getName();

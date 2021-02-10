@@ -11,3 +11,10 @@ SQL:
 Features:
   #死亡扣除經驗或金錢
   DeathExp: true
+  #自定附魔
+  enchantments:
+    #快速拾取
+    Telepathy: true
+  #自定物品
+  items:
+    QuickPickupInstrument: true

@@ -1,4 +1,4 @@
-package me.kokored.speserver.spemanagerplugin.bukkit.feature.inventory.guis.switchGUI;
+package me.kokored.speserver.spemanagerplugin.bukkit.features.inventory.switchGui;
 
 import me.kokored.speserver.spemanagerplugin.bukkit.SpeManagerPlugin;
 import org.bukkit.Bukkit;

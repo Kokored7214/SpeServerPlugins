@@ -36,8 +36,9 @@ public class MySQL {
 
             try {
                 Message.consoleLog("sql", "Trying to connect MySQL...");
+
                 openConnection();
-                createTable();
+                new CreateTable().create(connection);
             } catch (ClassNotFoundException | SQLException e) {
                 Message.consoleLog("sql_warning", "Fail to connect MySQL!");
                 e.printStackTrace();
@@ -93,22 +94,6 @@ public class MySQL {
 
     public static Boolean getDbStats() {
         return dbstats;
-    }
-
-    public void createTable() {
-        try {
-            Message.consoleLog("sql", "Loading data table...");
-            Statement plist = connection.createStatement();
-            String plist_code = "CREATE TABLE IF NOT EXISTS " + database + "." + "spe_system_playerlist"
-                    + " (" + "uuid CHAR(36) PRIMARY KEY," + "name CHAR(16) NOT NULL,"
-                    + "join_date CHAR(15)," + "last_update CHAR(40)" + ");";
-            plist.execute(plist_code);
-
-            Message.consoleLog("sql", "Data table loaded.");
-        } catch (SQLException e) {
-            Message.consoleLog("sql_warning", "Fail to load Data table!");
-            e.printStackTrace();
-        }
     }
 
     public static Boolean hasPlayer(String uuid) {

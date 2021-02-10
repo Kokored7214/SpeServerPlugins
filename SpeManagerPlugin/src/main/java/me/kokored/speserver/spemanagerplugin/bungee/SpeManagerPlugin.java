@@ -10,9 +10,11 @@ import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
+import org.bukkit.Material;
 
 public class SpeManagerPlugin extends Plugin {
 
+    static Plugin plugin;
     static ProxyServer proxyServer;
     static Configuration config_bungee;
 
@@ -24,13 +26,14 @@ public class SpeManagerPlugin extends Plugin {
 
         createDefaultConfig();
 
+        plugin = this;
         proxyServer = getProxy();
 
         discordBot = new DiscordBot();
         mySQL = new MySQL();
 
-        getProxy().getPluginManager().registerListener(this, new SQLPlayer());
-
+        new SQLPlayer();
+        
     }
 
     @Override
@@ -73,6 +76,10 @@ public class SpeManagerPlugin extends Plugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Plugin getPlugin() {
+        return plugin;
     }
 
     public static ProxyServer getProxyServer() {
