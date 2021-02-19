@@ -1,0 +1,8 @@
+name: SpeKitPlugin
+version: ${project.version}
+main: me.kokored.speserver.spekitplugin.SpeKitPlugin
+api-version: 1.15
+authors: [ Koko_red7214 ]
+description: 無語伺服器-禮包系統
+softdepend:
+  - SpeManagerPlugin

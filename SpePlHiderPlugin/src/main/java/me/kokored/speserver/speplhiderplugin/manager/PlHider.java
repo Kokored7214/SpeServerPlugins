@@ -47,30 +47,32 @@ public class PlHider implements Listener {
 
         for (int i = 0 ; i < targetCommands.size() ; i++){
 
-            if (command.contains(targetCommands.get(i))  && !(player.hasPermission("speserver.plhiderplugin.checkbypass"))) {
+            if (command.startsWith(targetCommands.get(i) + " ")) {
+                if (command.contains(targetCommands.get(i)) && !(player.hasPermission("speserver.plhiderplugin.checkbypass"))) {
 
-                if (!(event.isCancelled())) {
-                    event.setCancelled(true);
-                }
+                    if (!(event.isCancelled())) {
+                        event.setCancelled(true);
+                    }
 
-                player.sendMessage(ChatColor.RED + "十分抱歉, 你無法使用這個指令.");
-                player.sendMessage(ChatColor.YELLOW + "如需幫助, 可聯係在綫之伺服器管理員.");
+                    player.sendMessage(ChatColor.RED + "十分抱歉, 你無法使用這個指令.");
+                    player.sendMessage(ChatColor.YELLOW + "如需幫助, 可聯係在綫之伺服器管理員.");
 
-                plugin.getLogger().info("[Manager] Command \"" + command + "\" send by player " + player.getName() + " has been blocked!");
+                    plugin.getLogger().info("[Manager] Command \"" + command + "\" send by player " + player.getName() + " has been blocked!");
 
-                for (Player online : Bukkit.getOnlinePlayers()) {
+                    for (Player online : Bukkit.getOnlinePlayers()) {
 
-                    if (online.hasPermission("speserver.plhiderplugin.warnmsg")) {
+                        if (online.hasPermission("speserver.plhiderplugin.warnmsg")) {
 
-                        Player admin = online;
+                            Player admin = online;
 
-                        admin.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                                "&f[&c系統&f] &7» &f成功阻止由玩家 &d" + player.getName() + " &f發出的指令 &d" + command));
+                            admin.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                                    "&f[&c系統&f] &7» &f成功阻止由玩家 &d" + player.getName() + " &f發出的指令 &d" + command));
+
+                        }
 
                     }
 
                 }
-
             }
 
         }
